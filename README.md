@@ -1,10 +1,10 @@
-# About:
+`# About
 
 This repository serves as a personal documentation of my progress, covering various JavaScript concepts, problem-solving techniques, and hands-on projects. This repopsitory will also be the first step towards me learning MERN.
 
 
-## Topics
-- ✅ JavaScript Basics
+## Topics to cover
+- ✅ JavaScript Fundamentals
 - ✅ Arrays & Objects
 - ✅ Functions & Scope
 - ✅ DOM Manipulation
@@ -17,12 +17,12 @@ This repository serves as a personal documentation of my progress, covering vari
 ## Technologies Used
 - **Language:** JavaScript
 - **Tools:** VS Code, Node.js, Git & GitHub
-- **Resources:** Online courses, MDN Docs, freeCodeCamp, LeetCode
+- **Resources:** Online courses, MDN Docs, freeCodeCamp etc
 
 ## How to Navigate 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/saaahilhussain/javascript-journey.git
+   git clone https://github.com/saaahilhussain/learning-js.git
    ```
 2. Navigate to the desired topic folder.
 
