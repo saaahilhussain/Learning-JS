@@ -3,7 +3,7 @@
 This repository serves as a personal documentation of my progress, covering various JavaScript concepts, problem-solving techniques, and hands-on projects. This repopsitory will also be the first step towards me learning MERN.
 
 
-## Topics to cover
+## Topics
 - ✅ JavaScript Fundamentals
 - ✅ Arrays & Objects
 - ✅ Functions & Scope
