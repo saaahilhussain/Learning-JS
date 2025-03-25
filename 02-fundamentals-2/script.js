@@ -1,4 +1,5 @@
-//Solution to Assignment 1
+'use strict';
+//Solution - Assignment - 1
 // const calcAverage = (a, b, c) => (a + b + c)/3;
 
 // const scoreDolphins = calcAverage(44, 23, 71);
