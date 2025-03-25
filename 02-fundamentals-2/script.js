@@ -15,4 +15,16 @@
 //     }
 // }
 
-// checkWinner(scoreDolphins, scoreKoalas);
+// checkWinner(scoreDolphins, scoreKoalas)
+
+// function calcTip (bill){
+//     let tip = (bill>=50) && (bill<=300) ? bill*0.15 : bill*0.20;
+//     return tip;
+// }
+
+// let tips = [];
+// let bills = [125, 555, 44];
+// for(let i=0; i<bills.length; i++){
+//     tips.push(calcTip(bills[i]));
+// }
+// console.log(tips);
