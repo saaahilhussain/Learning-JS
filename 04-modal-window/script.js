@@ -21,7 +21,18 @@ function hideModal(){
 //testing buttons
 for(let i=0; i<btnsShowModal.length; i++)
     btnsShowModal[i].addEventListener('click', showModal);
-    btnCloseModal.addEventListener('click', hideModal);
-    overlay.addEventListener('click', hideModal);
+
+//after the modal is open
+btnCloseModal.addEventListener('click', hideModal); 
+overlay.addEventListener('click', hideModal);
+
+document.addEventListener('keydown', function(event){
+    //passing an argument here is necessary
+    //argument[dot]key selects the key that is pressed
+    if(event.key === 'Escape')
+        // console.log('Escape was pressed');
+        hideModal();
+})
+
     
 
