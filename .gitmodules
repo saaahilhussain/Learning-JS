@@ -1,3 +1,6 @@
 [submodule "03-guess-my-number-game"]
 	path = 03-guess-my-number-game
 	url = https://github.com/saaahilhussain/Guess-my-number-game
+[submodule "05-dice-game"]
+	path = 05-dice-game
+	url = https://github.com/saaahilhussain/Pig-game
