@@ -41,7 +41,7 @@ const books = [
     title: 'The Silk Roads',
     author: 'Peter Frankopan',
     ISBN: 6849,
-    keywords: 'History, Medieval History, Trade History',
+    keywords: ['History', 'Medieval History', 'Trade History'],
     thirdParty: {
       goodreads: {
         rating: 4.41, // Added from exercise page
@@ -57,6 +57,7 @@ const books = [
     author: 'Peter Thiel',
     ISBN: 40350,
     keywords: 'Entrepreneurship, technology',
+    publisher: 'SH Publications',
     thirdParty: {
       goodreads: {
         rating: 4.41, // <-- HERE
@@ -220,6 +221,10 @@ const restaurant = {
       close: 24,
     },
   },
+  orderPizza: function (mainIngredient, ...otherIngredients) {
+    console.log(mainIngredient);
+    console.log(otherIngredients);
+  },
 };
 
 //Destructuring this object, storing sat into its own variable named 'sat' & storing objects fri & thurs into weekdays named variable
@@ -231,7 +236,48 @@ console.log(weekDays);
 
 const add = function (...numbers) {
   // console.log(numbers);
+  let sum = 0;
+  for (let i = 0; i < numbers.length; i++) sum += numbers[i];
+  console.log(sum);
 };
 add(2, 4);
 add(2, 5, 7, 7);
 add(1, 2, 3, 4, 5);
+
+//implementing both
+const x = [2, 6, 8, 4, 9];
+add(...x); //used spread operator to copy elements from x
+//elements enter into "add" function where the get stored into "numbers" array using the REST operator
+
+restaurant.orderPizza('chicken', 'Aalu', 'Piyaaz', 'Nohoru');
+
+//Ex 4.1
+// Destructure the keywords property (array) of the first book from the books array into variables called mainKeyword and rest. The first keyword should be assigned to mainKeyword, and the rest of the keywords should be assigned to the rest variable (it should be an array).
+
+// console.log(books[0].keywords);
+// const [mainKeyword, ...rest] = books[0].keywords;
+// console.log(mainKeyword);
+// console.log(rest);
+
+//Ex 4.2
+//Destructure the second book from the books array into a variable called bookPublisher. The bookPublisher variable should be assigned with the value of the publisher property of the book object. Assign the rest of the properties to the restOfTheBook variable.
+
+const { publisher: bookPublisher, ...restofTheBook } = books[1];
+console.log(restofTheBook);
+
+//4.3
+// Write a function called printBookAuthorsCount that has two parameters called title and authors. The authors parameter should accept any number of arguments. This function should log to the console a string formatted like that: "The book "${title}" has ${authors.length} authors".
+
+// Example
+// Code:
+
+// printBookAuthorsCount('Algorithms', 'Robert Sedgewick', 'Kevin Wayne');
+// Expected output:
+
+// "The book "Algorithms" has 2 authors"
+
+function printBookAuthorsCount(title, ...authors) {
+  console.log(`The book ${title} has ${authors.length} authors.`);
+}
+
+printBookAuthorsCount('Xyz', 'Sahil', 'Hussain');
