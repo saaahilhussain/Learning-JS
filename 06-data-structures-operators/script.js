@@ -42,18 +42,45 @@ const books = [
     author: 'Peter Frankopan',
     ISBN: 6849,
     keywords: 'History, Medieval History, Trade History',
+    thirdParty: {
+      goodreads: {
+        rating: 4.41, // Added from exercise page
+        ratingsCount: 1733,
+        reviewsCount: 63,
+        fiveStarRatingCount: 976,
+        oneStarRatingCount: 13,
+      },
+    },
   },
   {
     title: 'Zero to One',
     author: 'Peter Thiel',
     ISBN: 40350,
     keywords: 'Entrepreneurship, technology',
+    thirdParty: {
+      goodreads: {
+        rating: 4.41, // <-- HERE
+        ratingsCount: 1733,
+        reviewsCount: 63,
+        fiveStarRatingCount: 976,
+        oneStarRatingCount: 13,
+      },
+    },
   },
   {
     title: 'Influence',
     author: 'Robert B. Cialdini',
     ISBN: 92492,
     keywords: 'Business, psychology, Persuasion',
+    thirdParty: {
+      goodreads: {
+        rating: 4.41, // <-- HERE
+        ratingsCount: 1733,
+        reviewsCount: 63,
+        fiveStarRatingCount: 976,
+        oneStarRatingCount: 13,
+      },
+    },
   },
 ];
 
@@ -80,3 +107,56 @@ console.log(programmingLanguage);
 
 let bookTitle = 'unknown';
 let bookAuthor = 'unknown';
+
+({ title: bookTitle, author: bookAuthor } = books[0]);
+console.log(bookTitle);
+console.log(bookAuthor);
+
+//Ex 2.5
+//Each book object has a deeply nested rating property as illustrated below:
+
+// {
+//     title: 'Algorithms',
+//     ...
+//     thirdParty: {
+//       goodreads: {
+//         rating: 4.41,              // Added above
+//         ratingsCount: 1733,
+//         reviewsCount: 63,
+//         fiveStarRatingCount: 976,
+//         oneStarRatingCount: 13
+//       }
+//     }
+//   },
+//   Destructure the first book object from the books array into a variable called bookRating. In the result of your destructuring, the bookRating variable should be assigned with the value of the book[0].thirdParty.goodreads.rating property.
+
+//   Please do most of the work on the left side of the assignment operator: const ... = books[0];
+
+const {
+  thirdParty: {
+    goodreads: { rating: bookRating },
+  },
+} = books[0];
+console.log(bookRating);
+
+//Ex 2.6
+//Write a function called printBookInfo that has three parameters called title, author and year. This function should work for a single object passed as an argument, and it should log to the console information about the book in this format: "${title} by ${author}, ${year}".
+
+// If year is undefined (was not passed), it should be assigned with a default value of 'year unknown'.
+
+// Example 1
+// Example 2
+// Code:
+
+// printBookInfo({ title: 'Algorithms', author: 'Robert Sedgewick', year: '2011' });
+// Expected output:
+
+// "Algorithms by Robert Sedgewick, 2011"
+
+// Solution
+
+// function printBookInfo({title, author, year='year unknown'}){
+//     console.log(`${title} by ${author}, ${year}`);
+// }
+
+// printBookInfo({title: 'the silk roads', author:'Sahil', year:2001})
