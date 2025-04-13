@@ -182,8 +182,18 @@ const bookAuthors = [...books[0].author, ...books[1].author];
 
 // "J a v a S c r i p t"
 
-function spellWord(word) {
-  console.log(word.split('').join(' '));
-}
+// function spellWord(word) {
+//   console.log(word.split('').join(' '));
+// }
 
-spellWord('sahil');
+// spellWord('sahil');
+
+//REST Operator
+// '...' is used on the left hand side of "="
+//Example:-
+const arrSahil = [1, 2, 3, 4, 5];
+//destructuring it and implementing rest operator
+const [a, b, ...bakiElements] = arrSahil;
+//elemets 1, 2 stored in a & b as destructured
+//rest of the elements get stored in "bakiElements" array
+console.log(a, b, bakiElements);
