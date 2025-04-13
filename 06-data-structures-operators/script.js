@@ -197,3 +197,41 @@ const [a, b, ...bakiElements] = arrSahil;
 //elemets 1, 2 stored in a & b as destructured
 //rest of the elements get stored in "bakiElements" array
 console.log(a, b, bakiElements);
+
+//using rest operator with OBJECTS
+const restaurant = {
+  name: 'Classico Italiano',
+  location: 'Via Angelo Tavanti 23, Firenze, Italy',
+  categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+  starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+  mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+
+  openingHours: {
+    thu: {
+      open: 12,
+      close: 22,
+    },
+    fri: {
+      open: 11,
+      close: 23,
+    },
+    sat: {
+      open: 0, // Open 24 hours
+      close: 24,
+    },
+  },
+};
+
+//Destructuring this object, storing sat into its own variable named 'sat' & storing objects fri & thurs into weekdays named variable
+const { sat, ...weekDays } = restaurant.openingHours;
+console.log(sat);
+console.log(weekDays);
+
+//using REST operator in functions
+
+const add = function (...numbers) {
+  // console.log(numbers);
+};
+add(2, 4);
+add(2, 5, 7, 7);
+add(1, 2, 3, 4, 5);
