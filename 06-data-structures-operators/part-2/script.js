@@ -200,6 +200,22 @@ const [a, b, ...bakiElements] = arrSahil;
 // console.log(a, b, bakiElements);
 
 //using rest operator with OBJECTS
+
+const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+const hours = {
+  [weekdays[3]]: {
+    open: 12,
+    close: 22,
+  },
+  [weekdays[4]]: {
+    open: 11,
+    close: 23,
+  },
+  [weekdays[weekdays.length - 2]]: {
+    open: 0, // Open 24 hours
+    close: 24,
+  },
+};
 const restaurant = {
   name: 'Classico Italiano',
   location: 'Via Angelo Tavanti 23, Firenze, Italy',
@@ -207,21 +223,10 @@ const restaurant = {
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
 
-  openingHours: {
-    thu: {
-      open: 12,
-      close: 22,
-    },
-    fri: {
-      open: 11,
-      close: 23,
-    },
-    sat: {
-      open: 0, // Open 24 hours
-      close: 24,
-    },
-  },
-  orderPizza: function (mainIngredient, ...otherIngredients) {
+  //ES-6 Enhanced object literals
+  hours,
+
+  orderPizza(mainIngredient, ...otherIngredients) {
     console.log(mainIngredient);
     //print the second parameter if it exists
     //here its false since the array length is 0
@@ -232,17 +237,17 @@ const restaurant = {
 
 //---- PART 2 -----
 
-const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
-// for (let i=0; i<menu.length; i++) console.log(menu[i]);
-// for(const item of menu) console.log(item);
-for (const item of menu.entries()) {
-  console.log(`${item[0] + 1}: ${item[1]}`);
-}
-console.log('---another way---');
-//Another way:-
-for (const [i, el] of menu.entries()) {
-  console.log(`${i + 1}: ${el}`);
-}
+// const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+// // for (let i=0; i<menu.length; i++) console.log(menu[i]);
+// // for(const item of menu) console.log(item);
+// for (const item of menu.entries()) {
+//   console.log(`${item[0] + 1}: ${item[1]}`);
+// }
+// console.log('---another way---');
+// //Another way:-
+// for (const [i, el] of menu.entries()) {
+//   console.log(`${i + 1}: ${el}`);
+// }
 
 // console.log([...menu.entries()]);
 
