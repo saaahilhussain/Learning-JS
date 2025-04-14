@@ -202,7 +202,7 @@ const [a, b, ...bakiElements] = arrSahil;
 //using rest operator with OBJECTS
 
 const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
-const hours = {
+const openingHours = {
   [weekdays[3]]: {
     open: 12,
     close: 22,
@@ -211,7 +211,7 @@ const hours = {
     open: 11,
     close: 23,
   },
-  [weekdays[weekdays.length - 2]]: {
+  [weekdays[5]]: {
     open: 0, // Open 24 hours
     close: 24,
   },
@@ -224,17 +224,53 @@ const restaurant = {
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
 
   //ES-6 Enhanced object literals
-  hours,
+  openingHours,
+  order(starterIndex, mainIndex) {
+    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+  },
+
+  orderDelivery({ starterIndex = 1, mainIndex = 0, time = '20:00', address }) {
+    console.log(
+      `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
+    );
+  },
+
+  orderPasta(ing1, ing2, ing3) {
+    console.log(
+      `Here is your declicious pasta with ${ing1}, ${ing2} and ${ing3}`
+    );
+  },
 
   orderPizza(mainIngredient, ...otherIngredients) {
     console.log(mainIngredient);
-    //print the second parameter if it exists
-    //here its false since the array length is 0
-    if (otherIngredients.length)
-      console.log(otherIngredients); //prettier-ignore
+    console.log(otherIngredients);
   },
 };
 
+// optional Chaining (?.)
+// console.log(restaurant.openingHours.mon.open);
+console.log(restaurant.openingHours.mon?.open);
+console.log(restaurant.openingHours?.mon?.open);
+
+const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+for (const day of days) {
+  // console.log(day);
+  const open = restaurant.openingHours[day]?.open ?? 'closed';
+  // console.log(open);
+  console.log(`On ${day}, we open at ${open} hrs.`);
+}
+
+//Optional chaining on METHODS
+
+console.log(restaurant.order?.(0, 1) ?? 'Method does not exist');
+console.log(restaurant.orderBhaat?.(0, 1) ?? 'Method does not exist');
+
+//Optional chaining in ARRAYS
+const user = [{ name: 'Sahil', email: 'sh@outllook.in' }];
+console.log(user[0]);
+console.log(user[0]?.name ?? 'User does not exist');
+console.log(user[1]?.name ?? 'User does not exist');
 //---- PART 2 -----
 
 // const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
