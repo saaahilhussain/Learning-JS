@@ -223,7 +223,9 @@ const restaurant = {
   },
   orderPizza: function (mainIngredient, ...otherIngredients) {
     console.log(mainIngredient);
-    console.log(otherIngredients);
+    //print the second parameter if it exists
+    //here its false since the array length is 0
+    if (otherIngredients.length) console.log(otherIngredients);
   },
 };
 
@@ -287,6 +289,7 @@ console.log(restofTheBook);
 // "OR Finds the First Okay"
 
 // 'OR ||' returns the first truthy value it finds. If none are truthy, it returns the last one.
+console.log('---OR---');
 console.log(49 || 'Sahil');
 console.log('' || 'Sahil');
 console.log(true || 0);
@@ -305,3 +308,19 @@ const guests2 = restaurant.numGuests || 63;
 console.log(guests2);
 
 //since 'restaurant.numGuests' is undefined and its a falsy value, 63 being the last truthy value gets added to the guests2 variable.
+
+// ?nemonic for AND (&&)
+// "AND Finds the First Alarming"
+
+// && returns the first falsy value. If none are falsy, it returns the last one.
+
+// Think:
+// “All must be okay! Wait — is this one bad? Yup, stop!”
+
+console.log('---AND---');
+console.log(0 && 'Sahil');
+console.log(49 && 'Hussain');
+
+if (restaurant.orderPizza) {
+  restaurant.orderPizza('Cheese Dominator');
+}
