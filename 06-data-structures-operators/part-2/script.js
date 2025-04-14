@@ -224,7 +224,9 @@ const restaurant = {
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
 
   //ES-6 Enhanced object literals
+  // openingHours,
   openingHours,
+
   order(starterIndex, mainIndex) {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
@@ -247,30 +249,60 @@ const restaurant = {
   },
 };
 
-// optional Chaining (?.)
-// console.log(restaurant.openingHours.mon.open);
-console.log(restaurant.openingHours.mon?.open);
-console.log(restaurant.openingHours?.mon?.open);
+//Looping Objects: keys, values and entries
 
-const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+const properties = Object.keys(openingHours);
+console.log(properties);
 
-for (const day of days) {
-  // console.log(day);
-  const open = restaurant.openingHours[day]?.open ?? 'closed';
-  // console.log(open);
-  console.log(`On ${day}, we open at ${open} hrs.`);
+let openStr = `We are open ${properties.length} days a week: `;
+
+for (const day of properties) openStr += `${day}, `;
+console.log(openStr);
+
+//Object values
+const values = Object.values(openingHours);
+console.log(values);
+
+//Object Entries
+const entries = Object.entries(openingHours);
+console.log(entries);
+
+for (const [key, { open, close }] of entries) {
+  console.log(`On ${key}, we open at ${open} hrs and close at ${close} hrs.`);
 }
+// console.log(x);
 
-//Optional chaining on METHODS
+// const user = {
+//   firstName: 'Sahil',
+//   lastName: 'Hussain',
+//   age: 21,
+// };
+// for (const details of Object.entries(user)) console.log(details);
 
-console.log(restaurant.order?.(0, 1) ?? 'Method does not exist');
-console.log(restaurant.orderBhaat?.(0, 1) ?? 'Method does not exist');
+// // optional Chaining (?.)
+// // console.log(restaurant.openingHours.mon.open);
+// console.log(restaurant.openingHours.mon?.open);
+// console.log(restaurant.openingHours?.mon?.open);
 
-//Optional chaining in ARRAYS
-const user = [{ name: 'Sahil', email: 'sh@outllook.in' }];
-console.log(user[0]);
-console.log(user[0]?.name ?? 'User does not exist');
-console.log(user[1]?.name ?? 'User does not exist');
+// const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+// for (const day of days) {
+//   // console.log(day);
+//   const open = restaurant.openingHours[day]?.open ?? 'closed';
+//   // console.log(open);
+//   console.log(`On ${day}, we open at ${open} hrs.`);
+// }
+
+// //Optional chaining on METHODS
+
+// console.log(restaurant.order?.(0, 1) ?? 'Method does not exist');
+// console.log(restaurant.orderBhaat?.(0, 1) ?? 'Method does not exist');
+
+// //Optional chaining in ARRAYS
+// const user = [{ name: 'Sahil', email: 'sh@outllook.in' }];
+// console.log(user[0]);
+// console.log(user[0]?.name ?? 'User does not exist');
+// console.log(user[1]?.name ?? 'User does not exist');
 //---- PART 2 -----
 
 // const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
