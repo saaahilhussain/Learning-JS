@@ -225,7 +225,8 @@ const restaurant = {
     console.log(mainIngredient);
     //print the second parameter if it exists
     //here its false since the array length is 0
-    if (otherIngredients.length) console.log(otherIngredients);
+    if (otherIngredients.length)
+      console.log(otherIngredients); //prettier-ignore
   },
 };
 
@@ -324,3 +325,12 @@ console.log(49 && 'Hussain');
 if (restaurant.orderPizza) {
   restaurant.orderPizza('Cheese Dominator');
 }
+
+//The Nullish Coalescing Operator (??)
+
+restaurant.numGuests = 0;
+const guests3 = restaurant.numGuests ?? 2;
+console.log(guests3);
+
+//WHEN TO USE IT??
+// When 0, false, or "" should be kept, not replaced.
