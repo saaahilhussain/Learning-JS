@@ -276,8 +276,32 @@ console.log(restofTheBook);
 
 // "The book "Algorithms" has 2 authors"
 
-function printBookAuthorsCount(title, ...authors) {
-  console.log(`The book ${title} has ${authors.length} authors.`);
-}
+// function printBookAuthorsCount(title, ...authors) {
+//   console.log(`The book ${title} has ${authors.length} authors.`);
+// }
 
-printBookAuthorsCount('Xyz', 'Sahil', 'Hussain');
+// printBookAuthorsCount('Xyz', 'Sahil', 'Hussain');
+
+//Short Circuiting (&& and ||)
+// Mnemonic for OR (||)
+// "OR Finds the First Okay"
+
+// 'OR ||' returns the first truthy value it finds. If none are truthy, it returns the last one.
+console.log(49 || 'Sahil');
+console.log('' || 'Sahil');
+console.log(true || 0);
+console.log(undefined || null);
+
+console.log(undefined || '' || null || 0 || 'Sahil Hussain');
+
+// restaurant.numGuests = 35;
+const guest1 = restaurant.numGuests ? restaurant.numGuests : 10;
+console.log(guest1);
+
+//doing the same using short circuiting
+
+const guests2 = restaurant.numGuests || 63;
+
+console.log(guests2);
+
+//since 'restaurant.numGuests' is undefined and its a falsy value, 63 being the last truthy value gets added to the guests2 variable.
