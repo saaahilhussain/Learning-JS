@@ -334,3 +334,57 @@ console.log(guests3);
 
 //WHEN TO USE IT??
 // When 0, false, or "" should be kept, not replaced.
+
+//More on Logical Assignment Operators
+
+const rest1 = {
+  name: 'Capri',
+  numGuests: 20,
+};
+const rest2 = {
+  name: 'La Piazza',
+  owner: 'Giovanni Rossi',
+};
+
+// rest1.numGuests = rest1.numGuests || 45;
+// rest2.numGuests = rest2.numGuests || 45;
+// console.log(rest1.numGuests);
+// console.log(rest2.numGuests);
+
+console.log(rest1);
+console.log(rest2);
+
+//doing the same thing using OR-Assignment operator
+
+rest1.numGuests ||= 10;
+rest2.numGuests ||= 10;
+console.log(rest1);
+console.log(rest2);
+
+//Nullish coalescing and assginment operator
+
+rest1.numGuests = 0;
+rest1.numGuests ||= 10;
+console.log(rest1);
+//DID Not print 0 :(
+
+rest1.numGuests = 0;
+rest1.numGuests ??= 10;
+console.log(rest1);
+//Printed 0 :)
+
+//Logical AND operator with Assignment operator
+//lets say we want to anonymise the names of the restaurant owners
+
+// rest1.owner = rest1.owner && '<ANONYMOUS>';
+// rest2.owner = rest2.owner && '<ANONYMOUS>';
+
+// console.log(rest1);
+// console.log(rest2);
+
+//doing the same using  &&=
+rest1.owner &&= '<ANON>';
+rest2.owner &&= '<ANON>';
+
+console.log(rest1);
+console.log(rest2);
