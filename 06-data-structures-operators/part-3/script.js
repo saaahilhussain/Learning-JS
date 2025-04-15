@@ -50,68 +50,121 @@ const restaurant = {
 
 //Set
 
-const ordersSet = new Set([
-  'Pasta',
-  'Pizza',
-  'Pizza',
-  'Risotto',
-  'Pasta',
-  'Pizza',
+// const ordersSet = new Set([
+//   'Pasta',
+//   'Pizza',
+//   'Pizza',
+//   'Risotto',
+//   'Pasta',
+//   'Pizza',
+// ]);
+
+// const name = new Set('Sahil');
+
+// //we can only add iterables in Set, it removes duplicates
+// //Set retrieves the distinct elements
+
+// console.log(ordersSet);
+// console.log(new Set('Sahil')); //Strings are iterable
+// console.log(new Set()); //we can log empty string as well
+
+// //uses:- add, delete, has, size
+// console.log(ordersSet.size);
+// console.log(ordersSet.has('Pasta'));
+// console.log(ordersSet.has('Chicken'));
+
+// //methods add, delete
+
+// ordersSet.add('Garlic Bread');
+// ordersSet.add('Garlic Bread');
+// console.log(ordersSet);
+// ordersSet.delete('Risotto');
+// console.log(ordersSet);
+
+// name.delete('S');
+// console.log(name);
+
+// //We can loop over Sets
+
+// for (const order of ordersSet) console.log(order);
+// for (const letter of name) console.log(letter);
+
+// ordersSet.clear();
+// console.log(ordersSet);
+
+// name.clear();
+// console.log(name);
+
+// const staff = [
+//   'Waiter',
+//   'Manager',
+//   'Waiter',
+//   'Supervisor',
+//   'Waiter',
+//   'Chef',
+//   'Waiter',
+//   'Manager',
+// ];
+
+// //storing it into an array
+// const staffUnique1 = new Set(staff);
+// const staffArr = [...staffUnique1];
+// console.log(staffArr);
+
+// //easier way to do the same
+
+// const staffUnique = [...new Set(staff)];
+// console.log(staffUnique);
+
+//New operations in Sets
+
+const italianFoods = new Set([
+  'pasta',
+  'gnocchi',
+  'tomatoes',
+  'olive oil',
+  'garlic',
+  'basil',
 ]);
 
-const name = new Set('Sahil');
+const mexicanFoods = new Set([
+  'tortillas',
+  'beans',
+  'rice',
+  'tomatoes',
+  'avocado',
+  'garlic',
+]);
 
-//we can only add iterables in Set, it removes duplicates
-//Set retrieves the distinct elements
+//intersection method
+const commonFood = italianFoods.intersection(mexicanFoods);
+console.log('intersection: ', commonFood);
+console.log([...new Set(commonFood)]);
 
-console.log(ordersSet);
-console.log(new Set('Sahil')); //Strings are iterable
-console.log(new Set()); //we can log empty string as well
+//union method
+const italianMexianFusion = italianFoods.union(mexicanFoods);
+console.log(italianMexianFusion);
 
-//uses:- add, delete, has, size
-console.log(ordersSet.size);
-console.log(ordersSet.has('Pasta'));
-console.log(ordersSet.has('Chicken'));
+console.log('union: ', [...new Set(italianMexianFusion)]);
 
-//methods add, delete
+//Difference method
 
-ordersSet.add('Garlic Bread');
-ordersSet.add('Garlic Bread');
-console.log(ordersSet);
-ordersSet.delete('Risotto');
-console.log(ordersSet);
+const uniqueItalianFoods = italianFoods.difference(mexicanFoods);
+console.log('Unique Italian Foods: ', uniqueItalianFoods);
 
-name.delete('S');
-console.log(name);
+const uniqueMexicanFoods = mexicanFoods.difference(italianFoods);
+console.log('Unique Mexican Foods: ', uniqueMexicanFoods);
 
-//We can loop over Sets
+//symmetric difference method (removes common element from both and gives a union set)
 
-for (const order of ordersSet) console.log(order);
-for (const letter of name) console.log(letter);
+const uniqueItalianAndMexicanFoods =
+  italianFoods.symmetricDifference(mexicanFoods);
 
-ordersSet.clear();
-console.log(ordersSet);
+console.log(uniqueItalianAndMexicanFoods);
 
-name.clear();
-console.log(name);
+//isDisjointFrom
 
-const staff = [
-  'Waiter',
-  'Manager',
-  'Waiter',
-  'Supervisor',
-  'Waiter',
-  'Chef',
-  'Waiter',
-  'Manager',
-];
-
-//storing it into an array
-const staffUnique1 = new Set(staff);
-const staffArr = [...staffUnique1];
-console.log(staffArr);
-
-//easier way to do the same
-
-const staffUnique = [...new Set(staff)];
-console.log(staffUnique);
+console.log(italianFoods.isDisjointFrom(mexicanFoods));
+const primes = new Set([2, 3, 5, 7, 11, 13, 17, 19]);
+const squares = new Set([1, 4, 9, 16]);
+console.log(primes.isDisjointFrom(squares)); // true
