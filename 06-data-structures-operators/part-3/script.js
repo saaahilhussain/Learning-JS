@@ -233,10 +233,20 @@ for (const [key, value] of question) {
   if (typeof key === 'number') console.log(`Question ${key}: ${value}`);
 }
 
-const answer = Number(prompt('Choose the answer: '));
+const answer = 3;
+// const answer = Number(prompt('Choose the answer: '));
 // console.log(answer);
 
 console.log(question.get(question.get('correct') === answer));
+
+//conver maps back to arrays
+
+console.log([...question]);
+
+//other methods
+console.log([...question.keys()]);
+console.log([...question.values()]);
+console.log([...question.entries()]); //similar to console.log([...question]);
 
 //convert objects to maps!
 // console.log(Object.entries(openingHours));
