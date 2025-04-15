@@ -169,47 +169,76 @@ const restaurant = {
 // const squares = new Set([1, 4, 9, 16]);
 // console.log(primes.isDisjointFrom(squares)); // true
 
-//MAPS: Fundamentals
-const rest = new Map();
-rest.set('name', 'Classico Italiano');
+// //MAPS: Fundamentals
+// const rest = new Map();
+// rest.set('name', 'Classico Italiano');
+// // console.log(rest);
+// rest.set(1, 'Firenze, Italy');
+// rest.set(2, 'Lisbob, Portugal');
+// // console.log(rest);
+// rest.set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Organic']);
+// rest.set('open', 11).set('close', 23);
+// // console.log(rest);
+// rest.set(true, 'We are open :D').set(false, 'We are close :(');
 // console.log(rest);
-rest.set(1, 'Firenze, Italy');
-rest.set(2, 'Lisbob, Portugal');
+
+// //get - method to retrieve data from this map
+
+// console.log(rest.get('name'));
+// console.log(rest.get(true));
+// console.log(rest.get(2));
+
+// const time = 13;
+// const getTime = rest.get(time > rest.get('open') && time < rest.get('close'));
+
+// //get receives the 'key', here key results to be true which was declared and true was mapped to the value 'we are open :)'
+
+// console.log(getTime);
+
+// //the has method
+// console.log(rest.has('categories'));
+// console.log(rest.has('address'));
+
+// //the delete method
+// rest.delete(2);
 // console.log(rest);
-rest.set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Organic']);
-rest.set('open', 11).set('close', 23);
-// console.log(rest);
-rest.set(true, 'We are open :D').set(false, 'We are close :(');
-console.log(rest);
 
-//get - method to retrieve data from this map
+// //we can even use arrays as keys!
 
-console.log(rest.get('name'));
-console.log(rest.get(true));
-console.log(rest.get(2));
+// const arr = [1, 2];
+// rest.set(arr, 'Test');
+// console.log(rest.get(arr));
 
-const time = 13;
-const getTime = rest.get(time > rest.get('open') && time < rest.get('close'));
+// //we can even use dom elements (objects) as keys!
 
-//get receives the 'key', here key results to be true which was declared and true was mapped to the value 'we are open :)'
+// rest.set(document.querySelector('h3'), 'Heading-3');
 
-console.log(getTime);
+const question = new Map([
+  ['question', 'What is the best programming language in the world?'],
+  [1, 'C'],
+  [2, 'Java'],
+  [3, 'JavaScript'],
+  [4, 'Python'],
+  ['correct', 3],
+  [true, 'Correct :)'],
+  [false, 'Not correct :('],
+]);
 
-//the has method
-console.log(rest.has('categories'));
-console.log(rest.has('address'));
+console.log(question);
 
-//the delete method
-rest.delete(2);
-console.log(rest);
+//Quiz-app
+console.log(question.get('question'));
+console.log();
+for (const [key, value] of question) {
+  if (typeof key === 'number') console.log(`Question ${key}: ${value}`);
+}
 
-//we can even use arrays as keys!
+const answer = Number(prompt('Choose the answer: '));
+// console.log(answer);
 
-const arr = [1, 2];
-rest.set(arr, 'Test');
-console.log(rest.get(arr));
+console.log(question.get(question.get('correct') === answer));
 
-//we can even use dom elements (objects) as keys!
-
-rest.set(document.querySelector('h3'), 'Heading-3');
-// console.log();
+//convert objects to maps!
+// console.log(Object.entries(openingHours));
+// const hoursMap = new Map(Object.entries(openingHours));
+// console.log(hoursMap);
