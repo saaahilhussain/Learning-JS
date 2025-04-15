@@ -213,42 +213,43 @@ const restaurant = {
 
 // rest.set(document.querySelector('h3'), 'Heading-3');
 
-const question = new Map([
-  ['question', 'What is the best programming language in the world?'],
-  [1, 'C'],
-  [2, 'Java'],
-  [3, 'JavaScript'],
-  [4, 'Python'],
-  ['correct', 3],
-  [true, 'Correct :)'],
-  [false, 'Not correct :('],
-]);
+// const question = new Map([
+//   ['question', 'What is the best programming language in the world?'],
+//   [1, 'C'],
+//   [2, 'Java'],
+//   [3, 'JavaScript'],
+//   [4, 'Python'],
+//   ['correct', 3],
+//   [true, 'Correct :)'],
+//   [false, 'Not correct :('],
+// ]);
 
-console.log(question);
+// console.log(question);
 
-//Quiz-app
-console.log(question.get('question'));
-console.log();
-for (const [key, value] of question) {
-  if (typeof key === 'number') console.log(`Question ${key}: ${value}`);
-}
+// //Quiz-app
+// console.log(question.get('question'));
+// console.log();
+// for (const [key, value] of question) {
+//   if (typeof key === 'number') console.log(`Question ${key}: ${value}`);
+// }
 
-const answer = 3;
-// const answer = Number(prompt('Choose the answer: '));
-// console.log(answer);
+// const answer = 3;
+// // const answer = Number(prompt('Choose the answer: '));
+// // console.log(answer);
 
-console.log(question.get(question.get('correct') === answer));
+// console.log(question.get(question.get('correct') === answer));
 
-//conver maps back to arrays
+// //conver maps back to arrays
 
-console.log([...question]);
+// console.log([...question]);
 
-//other methods
-console.log([...question.keys()]);
-console.log([...question.values()]);
-console.log([...question.entries()]); //similar to console.log([...question]);
+// //other methods
+// console.log([...question.keys()]);
+// console.log([...question.values()]);
+// console.log([...question.entries()]); //similar to console.log([...question]);
 
-//convert objects to maps!
-// console.log(Object.entries(openingHours));
-// const hoursMap = new Map(Object.entries(openingHours));
-// console.log(hoursMap);
+// //convert objects to maps!
+// // console.log(Object.entries(openingHours));
+// // const hoursMap = new Map(Object.entries(openingHours));
+// // console.log(hoursMap);
+
