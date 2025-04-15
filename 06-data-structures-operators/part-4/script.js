@@ -83,13 +83,41 @@ const capitalizeName = function (name) {
   const namesUpper = [];
   //names stores array of separated 'name'
   for (const n of names) {
-    namesUpper.push(n[0].toUpperCase() + n.slice(1));
+    // namesUpper.push(n[0].toUpperCase() + n.slice(1));
+    //another easier approach
+
+    namesUpper.push(n.replace(n[0], n[0].toUpperCase()));
   }
   console.log(namesUpper.join(' '));
-}; 
+};
 
 capitalizeName('safiqul hussain');
 capitalizeName('sahil hussain');
+
+//padding a string
+const message = 'Go to gate 23!';
+console.log(message.padStart(20, '+').padEnd(30, '#'));
+console.log('sahil'.padStart(20, '*').padEnd(30, '#'));
+
+const maskCreditCard = function (number) {
+  const str = number + ''; //str becomes a string due to '' being added to the number
+  const last = str.slice(-4);
+  return last.padStart(str.length, '*');
+};
+console.log(maskCreditCard(12345678));
+console.log(maskCreditCard(1234567812345678));
+
+// const x = 'shakil jubair';
+// const y = x.split(' ');
+// // console.log(y);
+
+// const z = [];
+
+// for (const i of y) {
+//   console.log(i);
+//   z.push(i[0].toUpperCase() + i.slice(1));
+//   console.log(z.join(' '));
+// }
 
 // function checkMiddleSeat(seat) {
 //   //B and E are middle seats
@@ -101,3 +129,17 @@ capitalizeName('sahil hussain');
 // checkMiddleSeat('11B');
 // checkMiddleSeat('45A');
 // checkMiddleSeat('63E');
+
+//Repeat method
+const message2 = 'Bad weather.. All departures delayed. ';
+
+console.log(message2.repeat(2));
+
+const planesInLine = function (n) {
+  console.log(`There are ${n} planes in line ${'✈️'.repeat(n)}`);
+};
+planesInLine('1');
+planesInLine('2');
+planesInLine('3');
+planesInLine('4');
+planesInLine('5');
