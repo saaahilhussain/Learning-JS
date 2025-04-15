@@ -118,53 +118,98 @@ const restaurant = {
 
 //New operations in Sets
 
-const italianFoods = new Set([
-  'pasta',
-  'gnocchi',
-  'tomatoes',
-  'olive oil',
-  'garlic',
-  'basil',
-]);
+// const italianFoods = new Set([
+//   'pasta',
+//   'gnocchi',
+//   'tomatoes',
+//   'olive oil',
+//   'garlic',
+//   'basil',
+// ]);
 
-const mexicanFoods = new Set([
-  'tortillas',
-  'beans',
-  'rice',
-  'tomatoes',
-  'avocado',
-  'garlic',
-]);
+// const mexicanFoods = new Set([
+//   'tortillas',
+//   'beans',
+//   'rice',
+//   'tomatoes',
+//   'avocado',
+//   'garlic',
+// ]);
 
-//intersection method
-const commonFood = italianFoods.intersection(mexicanFoods);
-console.log('intersection: ', commonFood);
-console.log([...new Set(commonFood)]);
+// //intersection method
+// const commonFood = italianFoods.intersection(mexicanFoods);
+// console.log('intersection: ', commonFood);
+// console.log([...new Set(commonFood)]);
 
-//union method
-const italianMexianFusion = italianFoods.union(mexicanFoods);
-console.log(italianMexianFusion);
+// //union method
+// const italianMexianFusion = italianFoods.union(mexicanFoods);
+// console.log(italianMexianFusion);
 
-console.log('union: ', [...new Set(italianMexianFusion)]);
+// console.log('union: ', [...new Set(italianMexianFusion)]);
 
-//Difference method
+// //Difference method
 
-const uniqueItalianFoods = italianFoods.difference(mexicanFoods);
-console.log('Unique Italian Foods: ', uniqueItalianFoods);
+// const uniqueItalianFoods = italianFoods.difference(mexicanFoods);
+// console.log('Unique Italian Foods: ', uniqueItalianFoods);
 
-const uniqueMexicanFoods = mexicanFoods.difference(italianFoods);
-console.log('Unique Mexican Foods: ', uniqueMexicanFoods);
+// const uniqueMexicanFoods = mexicanFoods.difference(italianFoods);
+// console.log('Unique Mexican Foods: ', uniqueMexicanFoods);
 
-//symmetric difference method (removes common element from both and gives a union set)
+// //symmetric difference method (removes common element from both and gives a union set)
 
-const uniqueItalianAndMexicanFoods =
-  italianFoods.symmetricDifference(mexicanFoods);
+// const uniqueItalianAndMexicanFoods =
+//   italianFoods.symmetricDifference(mexicanFoods);
 
-console.log(uniqueItalianAndMexicanFoods);
+// console.log(uniqueItalianAndMexicanFoods);
 
-//isDisjointFrom
+// //isDisjointFrom
 
-console.log(italianFoods.isDisjointFrom(mexicanFoods));
-const primes = new Set([2, 3, 5, 7, 11, 13, 17, 19]);
-const squares = new Set([1, 4, 9, 16]);
-console.log(primes.isDisjointFrom(squares)); // true
+// console.log(italianFoods.isDisjointFrom(mexicanFoods));
+// const primes = new Set([2, 3, 5, 7, 11, 13, 17, 19]);
+// const squares = new Set([1, 4, 9, 16]);
+// console.log(primes.isDisjointFrom(squares)); // true
+
+//MAPS: Fundamentals
+const rest = new Map();
+rest.set('name', 'Classico Italiano');
+// console.log(rest);
+rest.set(1, 'Firenze, Italy');
+rest.set(2, 'Lisbob, Portugal');
+// console.log(rest);
+rest.set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Organic']);
+rest.set('open', 11).set('close', 23);
+// console.log(rest);
+rest.set(true, 'We are open :D').set(false, 'We are close :(');
+console.log(rest);
+
+//get - method to retrieve data from this map
+
+console.log(rest.get('name'));
+console.log(rest.get(true));
+console.log(rest.get(2));
+
+const time = 13;
+const getTime = rest.get(time > rest.get('open') && time < rest.get('close'));
+
+//get receives the 'key', here key results to be true which was declared and true was mapped to the value 'we are open :)'
+
+console.log(getTime);
+
+//the has method
+console.log(rest.has('categories'));
+console.log(rest.has('address'));
+
+//the delete method
+rest.delete(2);
+console.log(rest);
+
+//we can even use arrays as keys!
+
+const arr = [1, 2];
+rest.set(arr, 'Test');
+console.log(rest.get(arr));
+
+//we can even use dom elements (objects) as keys!
+
+rest.set(document.querySelector('h3'), 'Heading-3');
+// console.log();
