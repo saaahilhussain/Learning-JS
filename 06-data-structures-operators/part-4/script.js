@@ -67,6 +67,30 @@ checkBaggage('I have a laptop');
 
 // const plane = 'A320';
 
+//Part -3
+
+console.log('a+very+nice+string'.split('+'));
+console.log('Sahil Hussain'.split(' '));
+
+const [firstName, lastName] = 'Sahil Hussain'.split(' ');
+console.table(firstName, lastName);
+
+const newName = ['Mr.', firstName, lastName.toUpperCase()].join(' ');
+console.log(newName);
+
+const capitalizeName = function (name) {
+  const names = name.split(' ');
+  const namesUpper = [];
+  //names stores array of separated 'name'
+  for (const n of names) {
+    namesUpper.push(n[0].toUpperCase() + n.slice(1));
+  }
+  console.log(namesUpper.join(' '));
+}; 
+
+capitalizeName('safiqul hussain');
+capitalizeName('sahil hussain');
+
 // function checkMiddleSeat(seat) {
 //   //B and E are middle seats
 //   const s = seat.slice(-1);
