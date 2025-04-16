@@ -30,28 +30,64 @@
 
 // How Passing Arguments Works: Value vs. Reference
 
-const flight = 'MH370';
-const sahil = {
-  name: 'Sahil Hussain',
-  passport: 9864226849,
+// const flight = 'MH370';
+// const sahil = {
+//   name: 'Sahil Hussain',
+//   passport: 9864226849,
+// };
+
+// const checkIn = function (flightNum, passenger) {
+//   flightNum = 'A380';
+//   passenger.name = 'Mr. ' + passenger.name;
+//   if (passenger.passport === 9864226849) {
+//     alert('Checked In!');
+//   } else alert('Wrong passport :(');
+// };
+
+// checkIn(flight, sahil);
+// console.log(flight);
+// console.log(sahil);
+
+// const newPassport = function (person) {
+//   person.passport = Math.trunc(Math.random() * 10000000);
+// };
+
+// newPassport(sahil);
+// checkIn(flight, sahil);
+// console.log(sahil);
+
+//Theory lecture (no coding required)
+
+//Functions Accepting Callback Functions
+
+const oneWord = function (str) {
+  return str.replaceAll(' ', '').toLowerCase();
 };
 
-const checkIn = function (flightNum, passenger) {
-  flightNum = 'A380';
-  passenger.name = 'Mr. ' + passenger.name;
-  if (passenger.passport === 9864226849) {
-    alert('Checked In!');
-  } else alert('Wrong passport :(');
+const upperFirstWord = function (str) {
+  const [first, ...others] = str.split(' ');
+  return [first.toUpperCase(), ...others].join(' ');
 };
 
-checkIn(flight, sahil);
-console.log(flight);
-console.log(sahil);
+//Higher-order function
 
-const newPassport = function (person) {
-  person.passport = Math.trunc(Math.random() * 10000000);
+const transformer = function (str, fn) {
+  console.log(`Original string: ${str}`);
+  console.log(`Transformed string: ${fn(str)}`);
+
+  console.log(`Transformed using: ${fn.name}`);
 };
+transformer('JavaScript is the best!', upperFirstWord);
+console.log('**************');
+transformer('JavaScript is the best!', oneWord);
 
-newPassport(sahil);
-checkIn(flight, sahil);
-console.log(sahil);
+//Another example
+const high5 = function () {
+  console.log('Hiiiiiiiiiiii👋');
+};
+document.body.addEventListener('click', high5);
+const selectH3 = document.querySelector('h3');
+selectH3.addEventListener('click', event => {
+  console.clear();
+  event.stopPropagation();
+});
