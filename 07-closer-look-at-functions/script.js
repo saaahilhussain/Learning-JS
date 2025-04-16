@@ -121,16 +121,16 @@ const lufthansa = {
 
   book(flightNum, name) {
     console.log(
-      `booked a seat on ${this.airline} flight ${this.iataCode}${flightNum} `
+      `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum} `
     );
     this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
   },
 };
 const book = lufthansa.book;
 
-lufthansa.book(380, 'Sahil Hussain');
-lufthansa.book(370, 'Arup Biswas');
-console.log(lufthansa);
+// lufthansa.book(380, 'Sahil Hussain');
+// lufthansa.book(370, 'Arup Biswas');
+// console.log(lufthansa);
 
 const eurowings = {
   airline: 'Eurowings',
@@ -138,11 +138,11 @@ const eurowings = {
   bookings: [],
 };
 
-console.log(eurowings);
-book.call(eurowings, 729, 'Aslam Siddik');
-book.call(eurowings, 571, 'Pankaj Boro');
+// console.log(eurowings);
+// book.call(eurowings, 729, 'Aslam Siddik');
+// book.call(eurowings, 571, 'Pankaj Boro');
 
-console.log(eurowings);
+// console.log(eurowings);
 
 const swiss = {
   airline: 'SwissAir',
@@ -150,16 +150,44 @@ const swiss = {
   bookings: [],
 };
 
-book.call(swiss, 129, 'Bhabishnu Bordoloi');
-book.call(swiss, 439, 'Sareen Jannat haque');
-console.log(swiss);
+// book.call(swiss, 129, 'Bhabishnu Bordoloi');
+// book.call(swiss, 439, 'Sareen Jannat haque');
+// console.log(swiss);
 
-//Apply Method
-const flightData = [986, 'Sehnaj Sultana'];
-const flightData1 = [764, 'Reju Sultana'];
+// //Apply Method
+// const flightData = [986, 'Sehnaj Sultana'];
+// const flightData1 = [764, 'Reju Sultana'];
 
-book.apply(eurowings, flightData);
-book.apply(swiss, flightData1);
+// book.apply(eurowings, flightData);
+// book.apply(swiss, flightData1);
 
+// console.log(eurowings);
+// console.log(swiss);
+
+//The Bind Method
+const bookEW = book.bind(eurowings);
+bookEW(911, 'Saklin Mustak');
+bookEW(431, 'Imran Bhai');
 console.log(eurowings);
-console.log(swiss);
+
+//We can even pre-apply the parameters
+
+const bookLX43 = book.bind(swiss, 43);
+//so while calling we simply use the name parameter (refer to the function definition)
+bookLX43('Kumar Kashyap');
+bookLX43('Tinutpal Kashyap');
+
+//important use case of bind method
+//when we use objects with eventListeners!
+
+lufthansa.planes = 45;
+lufthansa.buyPlane = function () {
+  console.log(this);
+
+  this.planes++;
+  console.log(this.planes);
+};
+
+document
+  .querySelector('.btn')
+  .addEventListener('click', lufthansa.buyPlane.bind(lufthansa));
