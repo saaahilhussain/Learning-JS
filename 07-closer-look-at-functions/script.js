@@ -60,34 +60,54 @@
 
 //Functions Accepting Callback Functions
 
-const oneWord = function (str) {
-  return str.replaceAll(' ', '').toLowerCase();
-};
+// const oneWord = function (str) {
+//   return str.replaceAll(' ', '').toLowerCase();
+// };
 
-const upperFirstWord = function (str) {
-  const [first, ...others] = str.split(' ');
-  return [first.toUpperCase(), ...others].join(' ');
-};
+// const upperFirstWord = function (str) {
+//   const [first, ...others] = str.split(' ');
+//   return [first.toUpperCase(), ...others].join(' ');
+// };
 
-//Higher-order function
+// //Higher-order function
 
-const transformer = function (str, fn) {
-  console.log(`Original string: ${str}`);
-  console.log(`Transformed string: ${fn(str)}`);
+// const transformer = function (str, fn) {
+//   console.log(`Original string: ${str}`);
+//   console.log(`Transformed string: ${fn(str)}`);
 
-  console.log(`Transformed using: ${fn.name}`);
-};
-transformer('JavaScript is the best!', upperFirstWord);
-console.log('**************');
-transformer('JavaScript is the best!', oneWord);
+//   console.log(`Transformed using: ${fn.name}`);
+// };
+// transformer('JavaScript is the best!', upperFirstWord);
+// console.log('**************');
+// transformer('JavaScript is the best!', oneWord);
 
-//Another example
-const high5 = function () {
-  console.log('Hiiiiiiiiiiii👋');
-};
-document.body.addEventListener('click', high5);
-const selectH3 = document.querySelector('h3');
-selectH3.addEventListener('click', event => {
-  console.clear();
-  event.stopPropagation();
-});
+// //Another example
+// const high5 = function () {
+//   console.log('Hiiiiiiiiiiii👋');
+// };
+// document.body.addEventListener('click', high5);
+// const selectH3 = document.querySelector('h3');
+// selectH3.addEventListener('click', event => {
+//   console.clear();
+//   event.stopPropagation();
+// });
+
+//Functions returning functions
+
+// const greet = function (greeting) {
+//   return function (name) {
+//     console.table(`${greeting} ${name}`);
+//   };
+// };
+
+// const greeterHey = greet('hey');
+// greeterHey('Sahil');
+// greeterHey('Shakil');
+
+// greet('Hello')('Sahil Hussain');
+
+//using arrow
+
+const greet = greeting => name => console.log(`${greeting} ${name}`);
+
+greet('Hello')('Sahil');
