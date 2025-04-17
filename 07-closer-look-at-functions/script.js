@@ -276,3 +276,44 @@ booker();
 //A closure makes sure that a function does not loose connection to its variable that existed at the function's birth place.
 
 console.dir(booker);
+
+//More on closures
+//Example 1:-
+let f;
+
+const g = function () {
+  const a = 7;
+  f = function () {
+    console.log(a * 2);
+  };
+};
+
+g();
+f();
+console.dir(f);
+
+//re-assgining f
+const h = function () {
+  const b = 9;
+  f = function () {
+    console.log(b * 3);
+  };
+};
+
+// f gets re-assigned when being called here
+h();
+f();
+console.dir(f);
+
+//Example 2:-
+const boardPassengers = function (n, wait) {
+  const perGroup = n / 3;
+
+  setTimeout(function () {
+    console.log(`We are now boarding all ${n} passengers.`);
+    console.log(`There are ${perGroup} groups in total. Thank you.`);
+  }, wait * 1000);
+  console.log(`We are now boarding in ${wait} seconds...`);
+};
+
+boardPassengers(180, 4);
