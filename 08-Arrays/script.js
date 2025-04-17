@@ -68,3 +68,47 @@ const currencies = new Map([
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
+
+//slice method on arrays
+const arr = ['a', 'b', 'c', 'd', 'e'];
+
+console.log(`length of ${'arr'}: ${arr.length}`);
+console.log(arr.slice(0, 3));
+console.log(arr.slice(0, arr.length));
+console.log(arr.slice(0, arr.length - 1));
+
+console.log('----negative----');
+console.log(arr.slice(-1));
+console.log(arr.slice(-2));
+console.log(arr.slice(-3));
+console.log(arr.slice(-arr.length));
+
+console.log(arr.slice(0, -1));
+console.log(arr.slice(0, -2));
+console.log(arr.slice(0, -3));
+console.log(arr.slice(0, -arr.length)); //-5  and second parameters ignores the mentioned index-number
+
+//creating shallow copy of arrays using slice
+console.log(arr.slice());
+//similar to:
+console.log([...arr]);
+//
+console.log('----SPLICE METHOD----');
+//SPLICE - mutates the original array removing the extracted part
+
+// console.log(`Extracted elements: ${arr.splice(3)}`);
+console.log(arr);
+
+//Reverse
+const arr2 = ['f', 'g', 'h', 'i', 'j', 'k'];
+// arr2.reverse(arr2);
+console.log(arr2);
+
+//CONCAT
+const letters = arr.concat(arr2);
+console.log([...arr, ...arr2]);
+console.log(letters);
+
+//JOIN Method
+console.log(letters.join('-'));
+//turns array into a string
