@@ -65,7 +65,7 @@ const currencies = new Map([
   ['GBP', 'Pound sterling'],
 ]);
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 
@@ -115,21 +115,39 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 //The New 'at' method
 
-const arr = [49, 45, 35];
+// const arr = [49, 45, 35];
 
-console.log(arr[0]);
-console.log(arr.at(0));
-console.log(arr.at(1));
+// console.log(arr[0]);
+// console.log(arr.at(0));
+// console.log(arr.at(1));
 
-//Use cases
-//getting last element of an array
-console.log(arr[arr.length - 1]);
-console.log(arr.slice(-1)[0]);
+// //Use cases
+// //getting last element of an array
+// console.log(arr[arr.length - 1]);
+// console.log(arr.slice(-1)[0]);
 
-//doing the same using at method is easier!
-console.table(arr.at(-1));
+// //doing the same using at method is easier!
+// console.table(arr.at(-1));
 
-//example: finding last character of a string
+// //example: finding last character of a string
 
-console.log('sahil'.at(0));
-console.log('sahil'.at(-1));
+// console.log('sahil'.at(0));
+// console.log('sahil'.at(-1));
+
+//FOR EACH
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+//First for of revision
+
+for (const [i, movement] of movements.entries()) {
+  if (movement > 0) {
+    console.log(`Movement ${i + 1}: you deposited ${movement}`);
+  } else console.log(`Movement ${i + 1}: you withdrew ${Math.abs(movement)}`);
+}
+
+//doing the same using for each
+console.log('----For Each----');
+movements.forEach(function (movement, i) {
+  if (movement > 0) {
+    console.log(`Movement ${i + 1}: you deposited ${movement}`);
+  } else console.log(`Movement ${i + 1}: you withdrew ${Math.abs(movement)}`);
+});
