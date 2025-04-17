@@ -59,11 +59,11 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 // LECTURES
 
-const currencies = new Map([
-  ['USD', 'United States dollar'],
-  ['EUR', 'Euro'],
-  ['GBP', 'Pound sterling'],
-]);
+// const currencies = new Map([
+//   ['USD', 'United States dollar'],
+//   ['EUR', 'Euro'],
+//   ['GBP', 'Pound sterling'],
+// ]);
 
 // const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
@@ -134,20 +134,40 @@ const currencies = new Map([
 // console.log('sahil'.at(0));
 // console.log('sahil'.at(-1));
 
-//FOR EACH
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-//First for of revision
+// //FOR EACH
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// //First for of revision
 
-for (const [i, movement] of movements.entries()) {
-  if (movement > 0) {
-    console.log(`Movement ${i + 1}: you deposited ${movement}`);
-  } else console.log(`Movement ${i + 1}: you withdrew ${Math.abs(movement)}`);
-}
+// for (const [i, movement] of movements.entries()) {
+//   if (movement > 0) {
+//     console.log(`Movement ${i + 1}: you deposited ${movement}`);
+//   } else console.log(`Movement ${i + 1}: you withdrew ${Math.abs(movement)}`);
+// }
 
-//doing the same using for each
-console.log('----For Each----');
-movements.forEach(function (movement, i) {
-  if (movement > 0) {
-    console.log(`Movement ${i + 1}: you deposited ${movement}`);
-  } else console.log(`Movement ${i + 1}: you withdrew ${Math.abs(movement)}`);
+// //doing the same using for each
+// console.log('----For Each----');
+// movements.forEach(function (movement, i) {
+//   if (movement > 0) {
+//     console.log(`Movement ${i + 1}: you deposited ${movement}`);
+//   } else console.log(`Movement ${i + 1}: you withdrew ${Math.abs(movement)}`);
+// });
+
+//forEach with Maps and Sets
+//on Maps:-
+const currencies = new Map([
+  ['USD', 'United States dollar'],
+  ['EUR', 'Euro'],
+  ['GBP', 'Pound sterling'],
+]);
+
+currencies.forEach(function (value, key, map) {
+  console.log(`${key}: ${value}`);
+});
+
+//on sets
+const uniqueCurr = new Set(['INR', 'USD', 'EUR', 'USD', 'GBP']);
+console.log(uniqueCurr);
+
+uniqueCurr.forEach(function (value, _, map) {
+  console.log(`${value}: ${value}`);
 });
