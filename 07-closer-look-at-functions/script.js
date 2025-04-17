@@ -216,29 +216,63 @@
 
 //IIFE (Immediately Invoked Function Expression)
 
-const runOnce = function () {
-  console.log('This function will not run again');
+// const runOnce = function () {
+//   console.log('This function will not run again');
+// };
+// runOnce();
+
+// //IIFE :-
+
+// (function () {
+//   console.log('This will NEVER run again. (used iife)');
+//   const privateData = 'This is a private variable';
+//   console.log(privateData);
+// })();
+// //We can hide variables inside IIFEs.
+
+// //iife in arrow functions
+// (() => console.log('This will ALSO never RUN AGAIN'))();
+
+// {
+//   const isPrivate = 45;
+//   var isNotPrivate = 49;
+// }
+// console.log(isNotPrivate); // not hidden since we used 'var'
+// console.log(isPrivate); //got hidden inside scope
+
+// //We can hide variables inside scopes using let & const
+// //we cannot hide variables inside a scope using var keyword
+
+//CLOSURES
+
+const secureBooking = function () {
+  let passengerCount = 0;
+
+  return function () {
+    passengerCount++;
+    console.log(`${passengerCount} passengers`);
+  };
 };
-runOnce();
 
-//IIFE :-
+const booker = secureBooking();
+booker();
+booker();
+booker();
 
-(function () {
-  console.log('This will NEVER run again. (used iife)');
-  const privateData = 'This is a private variable';
-  console.log(privateData);
-})();
-//We can hide variables inside IIFEs.
+// too much of theory concept, still nailed all of it ;)
 
-//iife in arrow functions
-(() => console.log('This will ALSO never RUN AGAIN'))();
+//refer to anurag singh procodr's closures vided of 1hr
+//then come back to jonas schmidtmann's course on closure, things will eventually make sense
 
-{
-  const isPrivate = 45;
-  var isNotPrivate = 49;
-}
-console.log(isNotPrivate); // not hidden since we used 'var'
-console.log(isPrivate); //got hidden inside scope
+//Definition of closure
+//A closure is the closed-over variable environment of the execution context in which a function was created even after that execution context is gone.
 
-//We can hide variables inside scopes using let & const
-//we cannot hide variables inside a scope using var keyword
+//Easier definition
+//A closure gives a function access to all variables of its parents function, even after that function has returne. The function keeps a reference to its outer scope, which preserves the scope chain throughout its time.
+
+//Note:- in order to form a closure, the child function has to necessarily use variable from its parent function
+
+//easier definition:-
+//A closure makes sure that a function does not loose connection to its variable that existed at the function's birth place.
+
+console.dir(booker);
