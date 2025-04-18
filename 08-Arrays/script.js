@@ -172,12 +172,34 @@
 //   console.log(`${value}: ${value}`);
 // });
 
-//Map method
+// //Map method
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+// const usdToInr = 90;
+
+// const movementsINR = movements.map(mov => mov * usdToInr);
+
+// console.log(movements);
+// console.log(movementsINR);
+
+//Filter Method
+
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
-const usdToInr = 90;
+const deposits = movements.filter(function (mov) {
+  return mov > 0;
+});
+// console.log(movements);
+console.log(deposits);
 
-const movementsINR = movements.map(mov => mov * usdToInr);
+//Doing the same using for of
+const deposits2 = [];
+for (const mov1 of movements)
+  if (mov1 > 0) {
+    deposits2.push(mov1);
+  }
+console.log(deposits2);
 
-console.log(movements);
-console.log(movementsINR);
+const withdrawals = movements.filter(mov => mov < 0);
+
+console.log('Withdrawals: ', withdrawals);
