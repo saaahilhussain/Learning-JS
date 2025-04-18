@@ -204,15 +204,29 @@
 // console.log('Withdrawals: ', withdrawals);
 
 //Reduce method
+
+// // const balance = movements.reduce((acc, cur) => acc + cur, 0);
+// // console.log(balance);
+// //Maximum value using reduce method
+
+// const maximum = movements.reduce((acc, mov) => {
+//   if (acc > mov) return acc;
+//   else return mov;
+// }, movements[0]);
+
+// console.log(maximum);
+
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const sumPosAndNeg = function (movements) {
+  const positives = movements
+    .filter(mov => mov > 0)
+    .reduce((acc, curr) => acc + curr, 0);
 
-// const balance = movements.reduce((acc, cur) => acc + cur, 0);
-// console.log(balance);
-//Maximum value using reduce method
+  const negatives = movements
+    .filter(mov => mov < 0)
+    .reduce((acc, curr) => acc + curr, 0);
 
-const maximum = movements.reduce((acc, mov) => {
-  if (acc > mov) return acc;
-  else return mov;
-}, movements[0]);
+  return { positives, negatives };
+};
 
-console.log(maximum);
+console.log(sumPosAndNeg(movements));
