@@ -135,7 +135,6 @@
 // console.log('sahil'.at(-1));
 
 // //FOR EACH
-// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // //First for of revision
 
 // for (const [i, movement] of movements.entries()) {
@@ -184,22 +183,28 @@
 
 //Filter Method
 
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+// const deposits = movements.filter(function (mov) {
+//   return mov > 0;
+// });
+// // console.log(movements);
+// console.log(deposits);
+
+// //Doing the same using for of
+// const deposits2 = [];
+// for (const mov1 of movements)
+//   if (mov1 > 0) {
+//     deposits2.push(mov1);
+//   }
+// console.log(deposits2);
+
+// const withdrawals = movements.filter(mov => mov < 0);
+
+// console.log('Withdrawals: ', withdrawals);
+
+//Reduce method
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
-const deposits = movements.filter(function (mov) {
-  return mov > 0;
-});
-// console.log(movements);
-console.log(deposits);
-
-//Doing the same using for of
-const deposits2 = [];
-for (const mov1 of movements)
-  if (mov1 > 0) {
-    deposits2.push(mov1);
-  }
-console.log(deposits2);
-
-const withdrawals = movements.filter(mov => mov < 0);
-
-console.log('Withdrawals: ', withdrawals);
+const balance = movements.reduce((acc, cur) => acc + cur, 0);
+console.log(balance);
