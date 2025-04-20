@@ -217,16 +217,8 @@
 // console.log(maximum);
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-const sumPosAndNeg = function (movements) {
-  const positives = movements
-    .filter(mov => mov > 0)
-    .reduce((acc, curr) => acc + curr, 0);
 
-  const negatives = movements
-    .filter(mov => mov < 0)
-    .reduce((acc, curr) => acc + curr, 0);
-
-  return { positives, negatives };
-};
-
-console.log(sumPosAndNeg(movements));
+const firstWithdrawal = movements.find(mov => mov < 0);
+console.log(firstWithdrawal);
+// fundamental difference -
+//find method returns the first element that fulfills the logic where as filter returns an entire array itself
