@@ -77,24 +77,24 @@
 // console.log(arr.slice(0, arr.length));
 // console.log(arr.slice(0, arr.length - 1));
 
-// console.log('----negative----');
-// console.log(arr.slice(-1));
-// console.log(arr.slice(-2));
-// console.log(arr.slice(-3));
-// console.log(arr.slice(-arr.length));
+console.log('----negative----');
+console.log(arr.slice(-1));
+console.log(arr.slice(-2));
+console.log(arr.slice(-3));
+console.log(arr.slice(-arr.length));
 
-// console.log(arr.slice(0, -1));
-// console.log(arr.slice(0, -2));
-// console.log(arr.slice(0, -3));
-// console.log(arr.slice(0, -arr.length)); //-5  and second parameters ignores the mentioned index-number
+console.log(arr.slice(0, -1));
+console.log(arr.slice(0, -2));
+console.log(arr.slice(0, -3));
+console.log(arr.slice(0, -arr.length)); //-5  and second parameters ignores the mentioned index-number
 
-// //creating shallow copy of arrays using slice
-// console.log(arr.slice());
-// //similar to:
-// console.log([...arr]);
-// //
-// console.log('----SPLICE METHOD----');
-// //SPLICE - mutates the original array removing the extracted part
+//creating shallow copy of arrays using slice
+console.log(arr.slice());
+//similar to:
+console.log([...arr]);
+//
+console.log('----SPLICE METHOD----');
+//SPLICE - mutates the original array removing the extracted part
 
 // // console.log(`Extracted elements: ${arr.splice(3)}`);
 // console.log(arr);
