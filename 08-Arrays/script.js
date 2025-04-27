@@ -77,23 +77,23 @@
 // console.log(arr.slice(0, arr.length));
 // console.log(arr.slice(0, arr.length - 1));
 
-console.log('----negative----');
-console.log(arr.slice(-1));
-console.log(arr.slice(-2));
-console.log(arr.slice(-3));
-console.log(arr.slice(-arr.length));
+// console.log('----negative----');
+// console.log(arr.slice(-1));
+// console.log(arr.slice(-2));
+// console.log(arr.slice(-3));
+// console.log(arr.slice(-arr.length));
 
-console.log(arr.slice(0, -1));
-console.log(arr.slice(0, -2));
-console.log(arr.slice(0, -3));
-console.log(arr.slice(0, -arr.length)); //-5  and second parameters ignores the mentioned index-number
+// console.log(arr.slice(0, -1));
+// console.log(arr.slice(0, -2));
+// console.log(arr.slice(0, -3));
+// console.log(arr.slice(0, -arr.length)); //-5  and second parameters ignores the mentioned index-number
 
 //creating shallow copy of arrays using slice
-console.log(arr.slice());
-//similar to:
-console.log([...arr]);
-//
-console.log('----SPLICE METHOD----');
+// console.log(arr.slice());
+// //similar to:
+// console.log([...arr]);
+// //
+// console.log('----SPLICE METHOD----');
 //SPLICE - mutates the original array removing the extracted part
 
 // // console.log(`Extracted elements: ${arr.splice(3)}`);
@@ -222,3 +222,10 @@ const firstWithdrawal = movements.find(mov => mov < 0);
 console.log(firstWithdrawal);
 // fundamental difference -
 //find method returns the first element that fulfills the logic where as filter returns an entire array itself
+
+//Similaryl, findLast and findLastIndex
+console.log(movements);
+const lastWithdrawal = movements.findLast(mov => mov < 0);
+console.log(lastWithdrawal);
+const IndexlastWithdrawal = movements.findLastIndex(mov => mov < 0);
+console.log(`index of last withdrawal: ${IndexlastWithdrawal}`);
