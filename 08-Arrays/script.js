@@ -216,16 +216,27 @@
 
 // console.log(maximum);
 
+// const firstWithdrawal = movements.find(mov => mov < 0);
+// console.log(firstWithdrawal);
+// // fundamental difference -
+// //find method returns the first element that fulfills the logic where as filter returns an entire array itself
+
+// //Similarly, findLast and findLastIndex
+// console.log(movements);
+// const lastWithdrawal = movements.findLast(mov => mov < 0);
+// console.log(lastWithdrawal);
+// const IndexlastWithdrawal = movements.findLastIndex(mov => mov < 0);
+// console.log(`index of last withdrawal: ${IndexlastWithdrawal}`);
+
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
-const firstWithdrawal = movements.find(mov => mov < 0);
-console.log(firstWithdrawal);
-// fundamental difference -
-//find method returns the first element that fulfills the logic where as filter returns an entire array itself
+//Some and Every
 
-//Similaryl, findLast and findLastIndex
-console.log(movements);
-const lastWithdrawal = movements.findLast(mov => mov < 0);
-console.log(lastWithdrawal);
-const IndexlastWithdrawal = movements.findLastIndex(mov => mov < 0);
-console.log(`index of last withdrawal: ${IndexlastWithdrawal}`);
+//Some method is quite similar to includes
+console.log(movements.includes(-400));
+// [dot]includes checks for EQUALITY
+
+//Where AS, [dot]some method checks for CONDITION
+
+const anyDeposit = movements.some(mov => mov > 0);
+console.table(anyDeposit);
