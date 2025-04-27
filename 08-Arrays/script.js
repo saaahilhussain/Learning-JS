@@ -1,24 +1,24 @@
 'use strict';
 
 // //Simple array methods
-// const account1 = {
-//   owner: 'Sahil Hussain',
-//   movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
-//   interestRate: 1.2, //%
-//   pin: 1111,
-// };
-// const account2 = {
-//   owner: 'Aslam Siddik',
-//   movements: [5000, 3400, -150, -790, -3210, -1000, 8000, -30],
-//   interestRate: 1.5,
-//   pin: 2222,
-// };
-// const account3 = {
-//   owner: 'Arup Biswas',
-//   movements: [200, -200, 340, -300, -20, 50, 400, -460],
-//   interestRate: 0.7,
-//   pin: 3333,
-// };
+const account1 = {
+  owner: 'Sahil Hussain',
+  movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
+  interestRate: 1.2, //%
+  pin: 1111,
+};
+const account2 = {
+  owner: 'Aslam Siddik',
+  movements: [5000, 3400, -150, -790, -3210, -1000, 8000, -30],
+  interestRate: 1.5,
+  pin: 2222,
+};
+const account3 = {
+  owner: 'Arup Biswas',
+  movements: [200, -200, 340, -300, -20, 50, 400, -460],
+  interestRate: 0.7,
+  pin: 3333,
+};
 
 const account4 = {
   owner: 'Sarah Smith',
@@ -27,7 +27,7 @@ const account4 = {
   pin: 4444,
 };
 
-// const accounts = [account1, account2, account3, account4];
+const accounts = [account1, account2, account3, account4];
 
 // // Elements
 // const labelWelcome = document.querySelector('.welcome');
@@ -228,28 +228,57 @@ const account4 = {
 // const IndexlastWithdrawal = movements.findLastIndex(mov => mov < 0);
 // console.log(`index of last withdrawal: ${IndexlastWithdrawal}`);
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-
 //Some and Every
 
-//Some method is quite similar to includes
-console.log(movements.includes(-400));
-// [dot]includes checks for EQUALITY
+// //Some method is quite similar to includes
+// console.log(movements.includes(-400));
+// // [dot]includes checks for EQUALITY
 
-//Where AS, [dot]some method checks for CONDITION
+// //Where AS, [dot]some method checks for CONDITION
 
-const anyDeposit = movements.some(mov => mov > 0);
-console.table(anyDeposit);
+// const anyDeposit = movements.some(mov => mov > 0);
+// console.table(anyDeposit);
 
-//EVERY
-//returns true only if all elemetns fullfil the condition
+// //EVERY
+// //returns true only if all elemetns fullfil the condition
 
-console.log(movements.every(mov => mov > 0)); //false
-console.log(account4.movements.every(mov => mov > 0)); //true`
+// console.log(movements.every(mov => mov > 0)); //false
+// console.log(account4.movements.every(mov => mov > 0)); //true`
 
-//Separate call backs
+// //Separate call backs
 
-const deposit = mov => mov > 0;
-console.log(movements.some(deposit));
-console.log(movements.every(deposit));
-console.log(movements.filter(deposit));
+// const deposit = mov => mov > 0;
+// console.log(movements.some(deposit));
+// console.log(movements.every(deposit));
+// console.log(movements.filter(deposit));
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+// flat and flatMap
+// example
+const arr1 = [1, 2, 3, 4];
+console.log(arr1.flat());
+
+const arr2 = [1, [2, 3, 4], 5, 6];
+console.log(arr2.flat());
+
+const arrDeep = [1, [2, 3, 4], 5, [6, [7, 8]]];
+console.log(arrDeep);
+console.log(arrDeep.flat());
+console.log(arrDeep.flat(2));
+
+// combining ALL movements into a single one
+const movementsAll = accounts.map(acc => acc.movements);
+console.log(movementsAll);
+
+const movementsCombined = movementsAll.flat();
+console.log(movementsCombined);
+
+const movementsTotal = movementsCombined.reduce((acc, mov) => acc + mov, 0);
+console.log(movementsTotal);
+
+//chaining them all into one using FLAT MAP
+const movementsFlatMapped = accounts
+  .flatMap(acc => acc.movements)
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(movementsFlatMapped);
