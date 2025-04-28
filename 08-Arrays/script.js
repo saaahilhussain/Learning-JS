@@ -252,33 +252,55 @@ const accounts = [account1, account2, account3, account4];
 // console.log(movements.every(deposit));
 // console.log(movements.filter(deposit));
 
+// // flat and flatMap
+// // example
+// const arr1 = [1, 2, 3, 4];
+// console.log(arr1.flat());
+
+// const arr2 = [1, [2, 3, 4], 5, 6];
+// console.log(arr2.flat());
+
+// const arrDeep = [1, [2, 3, 4], 5, [6, [7, 8]]];
+// console.log(arrDeep);
+// console.log(arrDeep.flat());
+// console.log(arrDeep.flat(2));
+
+// // combining ALL movements into a single one
+// const movementsAll = accounts.map(acc => acc.movements);
+// console.log(movementsAll);
+
+// const movementsCombined = movementsAll.flat();
+// console.log(movementsCombined);
+
+// const movementsTotal = movementsCombined.reduce((acc, mov) => acc + mov, 0);
+// console.log(movementsTotal);
+
+// //chaining them all into one using FLAT MAP
+// const movementsFlatMapped = accounts
+//   .flatMap(acc => acc.movements)
+//   .reduce((acc, mov) => acc + mov, 0);
+// console.log(movementsFlatMapped);
+
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const arr = ['Sahil', 'Aslam', 'Kumar', 'Anurag', 'Das'];
 
-// flat and flatMap
-// example
-const arr1 = [1, 2, 3, 4];
-console.log(arr1.flat());
+// console.log(arr.sort());
 
-const arr2 = [1, [2, 3, 4], 5, 6];
-console.log(arr2.flat());
+//ascending
+// console.log(movements);
+// const movements2 = movements.sort((a, b) => {
+//   if (a > b) return 1;
+//   if (b > a) return -1;
+// });
+const movements2 = movements.sort((a, b) => a - b);
 
-const arrDeep = [1, [2, 3, 4], 5, [6, [7, 8]]];
-console.log(arrDeep);
-console.log(arrDeep.flat());
-console.log(arrDeep.flat(2));
+console.log(movements2);
+//using .sort() mutates the original array. careful!
 
-// combining ALL movements into a single one
-const movementsAll = accounts.map(acc => acc.movements);
-console.log(movementsAll);
-
-const movementsCombined = movementsAll.flat();
-console.log(movementsCombined);
-
-const movementsTotal = movementsCombined.reduce((acc, mov) => acc + mov, 0);
-console.log(movementsTotal);
-
-//chaining them all into one using FLAT MAP
-const movementsFlatMapped = accounts
-  .flatMap(acc => acc.movements)
-  .reduce((acc, mov) => acc + mov, 0);
-console.log(movementsFlatMapped);
+//descending
+// const movements3 = movements.sort((a, b) => {
+//   if (a > b) return -1;
+//   if (b > a) return 1;
+// });
+const movements3 = movements.sort((a, b) => b - a);
+console.log(movements3);
