@@ -344,13 +344,21 @@ const accounts = [account1, account2, account3, account4, account5];
 
 const arr1 = [1, 2, 3, 4, 5, 6, 8];
 const arr2 = new Array(7);
-console.log(arr2);
+// console.log(arr2);
 
-arr2.fill(1);
-console.log(arr2);
+// arr2.fill(1);
+// console.log(arr2);
 
-arr2.fill(2, 1); //start
-console.log(arr2);
+// arr2.fill(2, 1); //start
+// console.log(arr2);
 
-arr2.fill(4, 2, 5); //end
-console.log(arr2);
+// arr2.fill(4, 2, 5); //end
+// console.log(arr2);
+
+// .from method
+const x = Array.from({ length: 4 }, () => 1);
+console.log(x);
+
+// const y = Array.from({ length: 7 }, (curr, i) => i + 1);
+const y = Array.from({ length: 7 }, (_, i) => i + 1);
+console.log(y);
