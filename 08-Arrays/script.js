@@ -328,16 +328,29 @@ const accounts = [account1, account2, account3, account4, account5];
 
 // console.log(groupedMovements);
 
-const groupedByActivity = Object.groupBy(accounts, account => {
-  const movementCount = account.movements.length;
-  if (movementCount >= 8) return 'very active';
-  if (movementCount >= 4) return 'modertately active';
-  if (movementCount >= 1) return 'less active';
-  return 'inactive';
-});
+// const groupedByActivity = Object.groupBy(accounts, account => {
+//   const movementCount = account.movements.length;
+//   if (movementCount >= 8) return 'very active';
+//   if (movementCount >= 4) return 'modertately active';
+//   if (movementCount >= 1) return 'less active';
+//   return 'inactive';
+// });
 
-console.log(groupedByActivity);
+// console.log(groupedByActivity);
 
-// const groupedByType = Object.groupBy(accounts, account => account.type);
-const groupedByType = Object.groupBy(accounts, ({ type }) => type);
-console.log(groupedByType);
+// // const groupedByType = Object.groupBy(accounts, account => account.type);
+// const groupedByType = Object.groupBy(accounts, ({ type }) => type);
+// console.log(groupedByType);
+
+const arr1 = [1, 2, 3, 4, 5, 6, 8];
+const arr2 = new Array(7);
+console.log(arr2);
+
+arr2.fill(1);
+console.log(arr2);
+
+arr2.fill(2, 1); //start
+console.log(arr2);
+
+arr2.fill(4, 2, 5); //end
+console.log(arr2);
