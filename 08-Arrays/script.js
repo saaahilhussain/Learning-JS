@@ -10,8 +10,7 @@ const account1 = {
 };
 const account2 = {
   owner: 'Aslam Siddik',
-  // movements: [5000, 3400, -150, -790, -3210, -1000, 8000, -30],
-  movements: [5000, 3400, -150, -790, -3210],
+  movements: [5000, 3400, -150, -790, -3210, -1000, 8000, -30],
   interestRate: 1.5,
   pin: 2222,
   type: 'basic',
@@ -26,23 +25,13 @@ const account3 = {
 
 const account4 = {
   owner: 'Sarah Smith',
-  // movements: [430, 1000, 700, 50, 90],
-  movements: [430],
+  movements: [430, 1000, 700, 50, 90],
   interestRate: 1,
   pin: 4444,
   type: 'standard',
 };
-const account5 = {
-  owner: 'Sahil Hussain II',
-  // movements: [430, 1000, 700, 50, 90],
-  // movements: [430],
-  movements: [],
-  interestRate: 1,
-  pin: 4444,
-  type: 'basic',
-};
 
-const accounts = [account1, account2, account3, account4, account5];
+const accounts = [account1, account2, account3, account4];
 
 // // Elements
 // const labelWelcome = document.querySelector('.welcome');
@@ -342,8 +331,8 @@ const accounts = [account1, account2, account3, account4, account5];
 // const groupedByType = Object.groupBy(accounts, ({ type }) => type);
 // console.log(groupedByType);
 
-const arr1 = [1, 2, 3, 4, 5, 6, 8];
-const arr2 = new Array(7);
+// const arr1 = [1, 2, 3, 4, 5, 6, 8];
+// const arr2 = new Array(7);
 // console.log(arr2);
 
 // arr2.fill(1);
@@ -352,13 +341,94 @@ const arr2 = new Array(7);
 // arr2.fill(2, 1); //start
 // console.log(arr2);
 
-// arr2.fill(4, 2, 5); //end
+// arr2.fill(4, 2, 5); //
 // console.log(arr2);
 
 // .from method
-const x = Array.from({ length: 4 }, () => 1);
-console.log(x);
+// const x = Array.from({ length: 4 }, () => 1);
+// console.log(x);
 
-// const y = Array.from({ length: 7 }, (curr, i) => i + 1);
-const y = Array.from({ length: 7 }, (_, i) => i + 1);
-console.log(y);
+// // const y = Array.from({ length: 7 }, (curr, i) => i + 1);
+// const y = Array.from({ length: 7 }, (_, i) => i + 1);
+// console.log(y);
+
+//Array Methods Practice
+//1 - sum of all deposits
+const sumAllDeposts = accounts
+  .flatMap(acc => acc.movements)
+  .filter(mov => mov > 0)
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(sumAllDeposts);
+
+//2 - no. of deposits more than or equal to 1000
+// const deposits1000 = accounts
+//   .flatMap(acc => acc.movements)
+//   .filter(mov => mov >= 1000).length;
+// console.log(deposits1000);
+
+//doing the same using reduce method
+
+const deposits1000 = accounts
+  .flatMap(acc => acc.movements)
+  .reduce((count, mov) => (mov >= 1000 ? ++count : count), 0);
+console.log(deposits1000);
+
+//prefix
+let a = 49;
+// console.log(a++); // returns the same
+console.log(++a); //prefix does the job
+
+//3. All deposits and withdrawals in an object
+const sumDeps = accounts
+  .flatMap(acc => acc.movements)
+  .reduce(
+    (acc, cur) => {
+      // cur > 0 ? (acc.deposit += cur) : (acc.withdrawal += cur);
+      acc[cur > 0 ? 'deposit' : 'withdrawal'] += cur;
+      return acc;
+    },
+    { deposit: 0, withdrawal: 0 }
+  );
+console.log(sumDeps);
+
+// 4. Title Case with exceptions
+
+const toTitleCase = function (title) {
+  const exceptions = [
+    'a',
+    'an',
+    'the',
+    'and',
+    'but',
+    'or',
+    'nor',
+    'for',
+    'so',
+    'yet',
+    'at',
+    'by',
+    'for',
+    'in',
+    'of',
+    'off',
+    'on',
+    'out',
+    'to',
+    'up',
+    'with',
+  ];
+  const capitalize = str => str[0].toUpperCase() + str.slice(1);
+  const titleCase = title
+    .toLowerCase()
+    .split(' ')
+    .map(word => (exceptions.includes(word) ? word : capitalize(word)))
+    .join(' ');
+  return titleCase;
+};
+
+console.log(toTitleCase('the lord of the rings'));
+console.log(toTitleCase('a journey Into the unknown'));
+console.log(toTitleCase('learning JavaScript in 2025'));
+console.log(toTitleCase('AN adventure OF a lifetime'));
+console.log(toTitleCase('building apps with react and node'));
+console.log(toTitleCase('FROM zero to hero: the journey'));
