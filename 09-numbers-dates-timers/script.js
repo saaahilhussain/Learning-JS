@@ -157,16 +157,35 @@
 // future.setFullYear(2040);
 // console.log(future);
 
-///////////////
-// Lec - Operations with dates
-const future1 = new Date(2025, 4, 1);
-console.log(+future1); //////Adding the + sign is equal to wrapping it inside Number() like Number(future)
-////it returns miliseconds
-const future2 = new Date(2025, 5, 1);
+// ///////////////
+// // Lec - Operations with dates
+// const future1 = new Date(2025, 4, 1);
+// console.log(+future1); //////Adding the + sign is equal to wrapping it inside Number() like Number(future)
+// ////it returns miliseconds
+// const future2 = new Date(2025, 5, 1);
 
-//calculations -
-const calcDaysPassed = (date1, date2) =>
-  (date2 - date1) / (1000 * 60 * 60 * 24);
+// //calculations -
+// const calcDaysPassed = (date1, date2) =>
+//   Math.abs(date2 - date1) / (1000 * 60 * 60 * 24);
 
-const day1 = calcDaysPassed(future1, future2);
-console.log(day1);
+// const day1 = calcDaysPassed(future1, future2);
+// console.log(day1);
+
+///////////////////////////////////////
+// Internationalizing Numbers (Intl)
+const num = 3884764.23;
+
+const options = {
+  style: 'currency',
+  unit: 'celsius',
+  currency: 'EUR',
+  // useGrouping: false,
+};
+
+console.log('US:      ', new Intl.NumberFormat('en-US', options).format(num));
+console.log('Germany: ', new Intl.NumberFormat('de-DE', options).format(num));
+console.log('Syria:   ', new Intl.NumberFormat('ar-SY', options).format(num));
+console.log(
+  navigator.language,
+  new Intl.NumberFormat(navigator.language, options).format(num)
+);
