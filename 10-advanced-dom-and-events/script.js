@@ -30,92 +30,130 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
-//Selecting elements using DOM Manipulation
+// //Selecting elements using DOM Manipulation
 
-console.log(document.documentElement);
-console.log(document.head);
-console.log(document.body);
+// console.log(document.documentElement);
+// console.log(document.head);
+// console.log(document.body);
 
-const header = document.querySelector('.header');
-const allSections = document.querySelectorAll('.section');
-console.log(allSections);
+// const header = document.querySelector('.header');
+// const allSections = document.querySelectorAll('.section');
+// console.log(allSections);
 
-const IdSec1 = document.getElementById('section--1');
-console.log(IdSec1);
+// const IdSec1 = document.getElementById('section--1');
+// console.log(IdSec1);
 
-const tagName = document.getElementsByTagName('button');
-console.log(tagName);
+// const tagName = document.getElementsByTagName('button');
+// console.log(tagName);
 
-const btn = document.getElementsByClassName('btn');
-console.log(btn);
+// const btn = document.getElementsByClassName('btn');
+// console.log(btn);
 
-//Creating and Inserting Elements
+// //Creating and Inserting Elements
 
-const message = document.createElement('div');
-message.classList.add('cookie-message');
-message.textContent =
-  'We use cookies for improved functionality and analytics.';
+// const message = document.createElement('div');
+// message.classList.add('cookie-message');
+// message.textContent =
+//   'We use cookies for improved functionality and analytics.';
 
-message.innerHTML =
-  'We use cookies for improved functionality and analytics. <button class= "btn btn--close-cookies">Got it!</button>';
-// console.log(message);
+// message.innerHTML =
+//   'We use cookies for improved functionality and analytics. <button class= "btn btn--close-cookies">Got it!</button>';
+// // console.log(message);
 
-// header.prepend(message);
-// header.append(message); //prepend and append cant work both at the same time
-// header.append(message.cloneNode(true)); //so, to make them appear in both, we need to clone the selection by using (cloneNode(true))
+// // header.prepend(message);
+// // header.append(message); //prepend and append cant work both at the same time
+// // header.append(message.cloneNode(true)); //so, to make them appear in both, we need to clone the selection by using (cloneNode(true))
 
-//inserting before and after some element
-// header.before(message);
-header.after(message);
+// //inserting before and after some element
+// // header.before(message);
+// header.after(message);
 
-//deleting elements
-document
-  .querySelector('.btn--close-cookies')
-  .addEventListener('click', function () {
-    message.remove();
-    // message.parentElement.removeChild(message);
-  });
-message.style.width = '120%';
+// //deleting elements
+// document
+//   .querySelector('.btn--close-cookies')
+//   .addEventListener('click', function () {
+//     message.remove();
+//     // message.parentElement.removeChild(message);
+//   });
+// message.style.width = '120%';
 
-/////styles
+// /////styles
 
-message.style.backgroundColor = '#37383d';
-console.log(message.style.height);
-console.log(message.style.backgroundColor);
+// message.style.backgroundColor = '#37383d';
+// console.log(message.style.height);
+// console.log(message.style.backgroundColor);
 
-console.log(getComputedStyle(message).height);
-message.style.height = parseInt(getComputedStyle(message).height) + 30 + 'px';
+// console.log(getComputedStyle(message).height);
+// message.style.height = parseInt(getComputedStyle(message).height) + 30 + 'px';
 
-//on CSS variables
-document.documentElement.style.setProperty('--color-primary', 'orangered');
+// //on CSS variables
+// document.documentElement.style.setProperty('--color-primary', 'orangered');
 
-// Attributes
-const logo = document.querySelector('.nav__logo');
-console.log(logo.alt);
-console.log(logo.className);
+// // Attributes
+// const logo = document.querySelector('.nav__logo');
+// console.log(logo.alt);
+// console.log(logo.className);
 
-logo.alt = 'Beautiful minimalist logo';
+// logo.alt = 'Beautiful minimalist logo';
 
-// Non-standard
-console.log(logo.designer);
-console.log(logo.getAttribute('designer'));
-logo.setAttribute('company', 'Bankist');
+// // Non-standard
+// console.log(logo.designer);
+// console.log(logo.getAttribute('designer'));
+// logo.setAttribute('company', 'Bankist');
 
-console.log(logo.src);
-console.log(logo.getAttribute('src'));
+// console.log(logo.src);
+// console.log(logo.getAttribute('src'));
 
-const link = document.querySelector('.nav__link--btn');
-console.log(link.href);
-console.log(link.getAttribute('href'));
+// const link = document.querySelector('.nav__link--btn');
+// console.log(link.href);
+// console.log(link.getAttribute('href'));
 
-// Data attributes
-console.log(logo.dataset.versionNumber);
+// // Data attributes
+// console.log(logo.dataset.versionNumber);
 
-// Classes
-logo.classList.add('c', 'j');
-logo.classList.remove('c', 'j');
-logo.classList.toggle('c');
-logo.classList.contains('c'); // not includes
+// // Classes
+// logo.classList.add('c', 'j');
+// logo.classList.remove('c', 'j');
+// logo.classList.toggle('c');
+// logo.classList.contains('c'); // not includes
 
-// Don't use
-logo.clasName = 'jonas';
+// // Don't use
+// logo.clasName = 'jonas';
+
+//Lec - Smooth Scrolling
+
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+
+const section1 = document.querySelector('#section--1');
+
+btnScrollTo.addEventListener('click', function (e) {
+  const s1coords = section1.getBoundingClientRect();
+  console.log('section: ', s1coords);
+
+  console.log('button: ', e.target.getBoundingClientRect());
+
+  console.log('current scroll position (x/y): ', scrollX, scrollY);
+
+  // console.log(
+  //   'current vp dimensions: ',
+  //   document.documentElement.clientHeight,
+  //   document.documentElement.clientHeight
+  // );
+
+  // window.scrollTo(
+  //   s1coords.left + window.pageXOffset,
+  //   s1coords.top + window.pageYOffset
+  // );
+  //added current scroll position because :-
+  //the s1coords.top is relative to viewport only and not document top
+
+  // //Smooth scrolling
+  // window.scrollTo({
+  //   left: s1coords.left + window.pageXOffset, //or + scollX
+  //   top: s1coords.top + window.pageYOffset, //or + scrollY
+  //   behavior: 'smooth',
+  // });
+
+  //Modern Way
+  section1.scrollIntoView({ behavior: 'smooth' });
+});
