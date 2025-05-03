@@ -157,3 +157,23 @@ btnScrollTo.addEventListener('click', function (e) {
   //Modern Way
   section1.scrollIntoView({ behavior: 'smooth' });
 });
+
+/////// From Lectures
+// More on Event Listeners
+
+const fnHoverH1 = function (e) {
+  alert('check console');
+  console.log('You just hovered on h1');
+
+  // h1.removeEventListener('mouseenter', fnHoverH1);
+};
+
+const h1 = document.querySelector('h1');
+
+h1.addEventListener('mouseenter', fnHoverH1);
+
+setTimeout(() => h1.removeEventListener('mouseenter', fnHoverH1), 5000); //removes eventListener after 5 seconds
+
+// h1.onmouseenter = function (e) {
+//   console.log('Hover activity on h1');
+// };
