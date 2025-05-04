@@ -1,12 +1,15 @@
 'use strict';
 
-///////////////////////////////////////
-// Modal window
-
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+
+///////////////////////////////////////
+///////////////////////////////////////
+// Modal window
 
 const openModal = function (e) {
   e.preventDefault();
@@ -28,6 +31,40 @@ document.addEventListener('keydown', function (e) {
   if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
     closeModal();
   }
+});
+
+// Button scrolling to section 1 (Lec - Smooth Scrolling)
+
+btnScrollTo.addEventListener('click', function (e) {
+  const s1coords = section1.getBoundingClientRect();
+  console.log('section: ', s1coords);
+
+  console.log('button: ', e.target.getBoundingClientRect());
+
+  console.log('current scroll position (x/y): ', scrollX, scrollY);
+
+  // console.log(
+  //   'current vp dimensions: ',
+  //   document.documentElement.clientHeight,
+  //   document.documentElement.clientHeight
+  // );
+
+  // window.scrollTo(
+  //   s1coords.left + window.pageXOffset,
+  //   s1coords.top + window.pageYOffset
+  // );
+  //added current scroll position because :-
+  //the s1coords.top is relative to viewport only and not document top
+
+  // //Smooth scrolling
+  // window.scrollTo({
+  //   left: s1coords.left + window.pageXOffset, //or + scollX
+  //   top: s1coords.top + window.pageYOffset, //or + scrollY
+  //   behavior: 'smooth',
+  // });
+
+  //Modern Way
+  section1.scrollIntoView({ behavior: 'smooth' });
 });
 
 // //Selecting elements using DOM Manipulation
@@ -120,44 +157,6 @@ document.addEventListener('keydown', function (e) {
 // // Don't use
 // logo.clasName = 'jonas';
 
-//Lec - Smooth Scrolling
-
-const btnScrollTo = document.querySelector('.btn--scroll-to');
-
-const section1 = document.querySelector('#section--1');
-
-btnScrollTo.addEventListener('click', function (e) {
-  const s1coords = section1.getBoundingClientRect();
-  console.log('section: ', s1coords);
-
-  console.log('button: ', e.target.getBoundingClientRect());
-
-  console.log('current scroll position (x/y): ', scrollX, scrollY);
-
-  // console.log(
-  //   'current vp dimensions: ',
-  //   document.documentElement.clientHeight,
-  //   document.documentElement.clientHeight
-  // );
-
-  // window.scrollTo(
-  //   s1coords.left + window.pageXOffset,
-  //   s1coords.top + window.pageYOffset
-  // );
-  //added current scroll position because :-
-  //the s1coords.top is relative to viewport only and not document top
-
-  // //Smooth scrolling
-  // window.scrollTo({
-  //   left: s1coords.left + window.pageXOffset, //or + scollX
-  //   top: s1coords.top + window.pageYOffset, //or + scrollY
-  //   behavior: 'smooth',
-  // });
-
-  //Modern Way
-  section1.scrollIntoView({ behavior: 'smooth' });
-});
-
 //  From Lectures
 // // More on Event Listeners
 
@@ -186,19 +185,19 @@ btnScrollTo.addEventListener('click', function (e) {
 
 //storing random colour rgb(255, 255, 255);
 
-const randomInt = (min, max) =>
-  Math.trunc(Math.random() * (max - min + 1) + min);
+// const randomInt = (min, max) =>
+//   Math.trunc(Math.random() * (max - min + 1) + min);
 
-const randomColor = () =>
-  `rgb(${randomInt(0, 255)}, ${randomInt(0, 255)}, ${randomInt(0, 255)})`;
+// const randomColor = () =>
+//   `rgb(${randomInt(0, 255)}, ${randomInt(0, 255)}, ${randomInt(0, 255)})`;
 
-document.querySelector('.nav__link').addEventListener('click', function (e) {
-  this.style.backgroundColor = randomColor();
-});
+// document.querySelector('.nav__link').addEventListener('click', function (e) {
+//   this.style.backgroundColor = randomColor();
+// });
 
-document.querySelector('.nav__links').addEventListener('click', function (e) {
-  this.style.backgroundColor = randomColor();
-});
-document.querySelector('.nav').addEventListener('click', function (e) {
-  this.style.backgroundColor = randomColor();
-});
+// document.querySelector('.nav__links').addEventListener('click', function (e) {
+//   this.style.backgroundColor = randomColor();
+// });
+// document.querySelector('.nav').addEventListener('click', function (e) {
+//   this.style.backgroundColor = randomColor();
+// });
