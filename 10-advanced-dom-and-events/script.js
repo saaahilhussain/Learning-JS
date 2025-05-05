@@ -69,19 +69,44 @@ btnScrollTo.addEventListener('click', function (e) {
 });
 //////////////
 //page navigaion (Lec 204 - Event Delegation)
-const navLinks = document
-  .querySelectorAll('.nav__link')
-  .forEach(function (link) {
-    link.addEventListener('click', function (e) {
-      e.preventDefault();
-      // console.log('click');
+// const navLinks = document
+//   .querySelectorAll('.nav__link')
+//   .forEach(function (link) {
+//     link.addEventListener('click', function (e) {
+//       e.preventDefault();
+//       // console.log('click');
 
-      const id = this.getAttribute('href');
-      // console.log(id);
+//       const id = this.getAttribute('href');
+//       // console.log(id);
 
-      document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
-    });
-  });
+//       document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+//     });
+//   });
+//the above method is not the best optimised approach to page navigation. if we were to work on a larger codebase then this would lead to performance issues.
+
+//we will solve that problem by using the concept of event bubbling & event capturing
+
+//steps to do it
+//1. Add event listener to common parent (example- here it is '.nav__links')
+//2. Determine what event originated the event
+//3. Determine a matching strategy to execute
+
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  e.preventDefault();
+
+  // console.log(e.target);
+  // here e.target is a very important concept and helps us to know where exactly the event is taking place
+
+  //Matching strategt
+  if (e.target.classList.contains('nav__link')) {
+    const id = e.target.getAttribute('href');
+    // console.log('link', id);
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+  }
+});
+
+/////////////////////////////////
+//////LECTURES/
 
 // //Selecting elements using DOM Manipulation
 
