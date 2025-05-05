@@ -36,6 +36,7 @@ document.addEventListener('keydown', function (e) {
 // Button scrolling to section 1 (Lec - Smooth Scrolling)
 
 btnScrollTo.addEventListener('click', function (e) {
+  console.log('click');
   const s1coords = section1.getBoundingClientRect();
   console.log('section: ', s1coords);
 
@@ -66,6 +67,21 @@ btnScrollTo.addEventListener('click', function (e) {
   //Modern Way
   section1.scrollIntoView({ behavior: 'smooth' });
 });
+//////////////
+//page navigaion (Lec 204 - Event Delegation)
+const navLinks = document
+  .querySelectorAll('.nav__link')
+  .forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+      // console.log('click');
+
+      const id = this.getAttribute('href');
+      // console.log(id);
+
+      document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+    });
+  });
 
 // //Selecting elements using DOM Manipulation
 
