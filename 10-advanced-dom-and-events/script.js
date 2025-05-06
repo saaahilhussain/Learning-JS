@@ -105,6 +105,31 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
   }
 });
 
+//////////////////////////////////////
+//Lec - 205 Building a tabbed component
+
+//tabbed components
+const tabs = document.querySelectorAll('.operations__tab');
+const tabContainer = document.querySelector('.operations__tab-container');
+const tabContent = document.querySelectorAll('.operations__content');
+
+// tabs.forEach(t =>
+//   t.addEventListener('click', function (e) {
+//     console.log('CLICK');
+//   })
+// );  //Unoptimised code and might cause performance problems
+
+//Better approach - event delegation
+tabContainer.addEventListener('click', function (e) {
+  const clicked = e.target.closest('.operations__tab');
+  console.log(clicked);
+
+  if (!clicked) return;
+  //before adding the active class, remove it from the class tab
+  tabs.forEach(t => t.classList.remove('operations__tab--active'))
+  clicked.classList.add('operations__tab--active');
+});
+
 /////////////////////////////////
 //////LECTURES/
 
@@ -244,40 +269,40 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
 // });
 
 ///////////////////
-///Lec 206 - Dom Traversing
+///Lec 205 - Dom Traversing
 
-// Sometimes we need to select elements relative to the other elements
+// // Sometimes we need to select elements relative to the other elements
 
-const h1 = document.querySelector('h1');
+// const h1 = document.querySelector('h1');
 
-//going downwards: child
-console.log(h1.querySelectorAll('.highlight'));
-console.log(h1.childNodes); //selects literally everything downwards child
-console.log(h1.children); //selects only the html elemts under it
+// //going downwards: child
+// console.log(h1.querySelectorAll('.highlight'));
+// console.log(h1.childNodes); //selects literally everything downwards child
+// console.log(h1.children); //selects only the html elemts under it
 
-console.log(h1.firstElementChild);
-h1.firstElementChild.style.color = 'orangered';
-h1.lastElementChild.style.color = 'blue';
+// console.log(h1.firstElementChild);
+// h1.firstElementChild.style.color = 'orangered';
+// h1.lastElementChild.style.color = 'blue';
 
-// going upwards: parents
-console.log(h1.parentNode); //selects the direct parent element
-console.log(h1.parentElement); // does the same in this case
+// // going upwards: parents
+// console.log(h1.parentNode); //selects the direct parent element
+// console.log(h1.parentElement); // does the same in this case
 
-//select the closest parent
-h1.closest('.header').style.background = 'var(--gradient-secondary)'; //selects the closest parent element that is called or selected - receives a query string just like querySelector
-h1.closest('h1').style.background = 'var(--gradient-primary)';
+// //select the closest parent
+// h1.closest('.header').style.background = 'var(--gradient-secondary)'; //selects the closest parent element that is called or selected - receives a query string just like querySelector
+// h1.closest('h1').style.background = 'var(--gradient-primary)';
 
-//going sideways: siblings
-console.log(h1.previousElementSibling);
-console.log(h1.nextElementSibling);
+// //going sideways: siblings
+// console.log(h1.previousElementSibling);
+// console.log(h1.nextElementSibling);
 
-//if we were to select all the sibligs rather than the previous or next one then there is a trick - in which we can move up to the parent element and then select all of the children
+// //if we were to select all the sibligs rather than the previous or next one then there is a trick - in which we can move up to the parent element and then select all of the children
 
-//HTML collection is not an array but since it is an iterable we can store it in an array using the spread operator and loop over it
+// //HTML collection is not an array but since it is an iterable we can store it in an array using the spread operator and loop over it
 
-console.log([...h1.parentElement.children]);
-console.log(h1.parentElement.children);
+// console.log([...h1.parentElement.children]);
+// console.log(h1.parentElement.children);
 
-[...h1.parentElement.children].forEach(function (el) {
-  if (el !== h1) el.style.transform = 'scale(0.5)';
-});
+// [...h1.parentElement.children].forEach(function (el) {
+//   if (el !== h1) el.style.transform = 'scale(0.5)';
+// });
