@@ -242,3 +242,42 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
 // document.querySelector('.nav').addEventListener('click', function (e) {
 //   this.style.backgroundColor = randomColor();
 // });
+
+///////////////////
+///Lec 206 - Dom Traversing
+
+// Sometimes we need to select elements relative to the other elements
+
+const h1 = document.querySelector('h1');
+
+//going downwards: child
+console.log(h1.querySelectorAll('.highlight'));
+console.log(h1.childNodes); //selects literally everything downwards child
+console.log(h1.children); //selects only the html elemts under it
+
+console.log(h1.firstElementChild);
+h1.firstElementChild.style.color = 'orangered';
+h1.lastElementChild.style.color = 'blue';
+
+// going upwards: parents
+console.log(h1.parentNode); //selects the direct parent element
+console.log(h1.parentElement); // does the same in this case
+
+//select the closest parent
+h1.closest('.header').style.background = 'var(--gradient-secondary)'; //selects the closest parent element that is called or selected - receives a query string just like querySelector
+h1.closest('h1').style.background = 'var(--gradient-primary)';
+
+//going sideways: siblings
+console.log(h1.previousElementSibling);
+console.log(h1.nextElementSibling);
+
+//if we were to select all the sibligs rather than the previous or next one then there is a trick - in which we can move up to the parent element and then select all of the children
+
+//HTML collection is not an array but since it is an iterable we can store it in an array using the spread operator and loop over it
+
+console.log([...h1.parentElement.children]);
+console.log(h1.parentElement.children);
+
+[...h1.parentElement.children].forEach(function (el) {
+  if (el !== h1) el.style.transform = 'scale(0.5)';
+});
