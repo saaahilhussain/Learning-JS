@@ -154,14 +154,27 @@ const handleHover = function (e) {
     logo.style.opacity = this;
   }
 };
-console.log(nav);
+// console.log(nav);
 //we could also be using 'mouseenter' instead of 'mouseover' but the problem being - 'mouseenter' does not bubble during event delegation
 
+//here bind is the opacity passed as "arguement", refer to the function definition for "this" keyword
 nav.addEventListener('mouseover', handleHover.bind(0.5));
 
 //mouseout is opposite to mouseover
 
 nav.addEventListener('mouseout', handleHover.bind(1));
+
+//Making the navigation after section 1
+
+const initialCoords = section1.getBoundingClientRect();
+console.log(initialCoords);
+
+window.addEventListener('scroll', function () {
+  // console.log(window.scrollY);
+
+  if (window.scrollY > initialCoords.top) nav.classList.add('sticky');
+  else nav.classList.remove('sticky');
+});
 /////////////////////////////////
 //////LECTURES
 
