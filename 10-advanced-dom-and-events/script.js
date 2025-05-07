@@ -141,38 +141,27 @@ tabContainer.addEventListener('click', function (e) {
 });
 
 // Menu fade animation
+const handleHover = function (e) {
+  if (e.target.classList.contains('nav__link')) {
+    const link = e.target;
+    const siblings = link.closest('.nav').querySelectorAll('.nav__link');
+    const logo = link.closest('.nav').querySelector('img');
+
+    siblings.forEach(el => {
+      if (el !== link) el.style.opacity = this;
+    });
+
+    logo.style.opacity = this;
+  }
+};
 console.log(nav);
 //we could also be using 'mouseenter' instead of 'mouseover' but the problem being - 'mouseenter' does not bubble during event delegation
 
-nav.addEventListener('mouseover', function (e) {
-  if (e.target.classList.contains('nav__link')) {
-    const link = e.target;
-    const siblings = link.closest('.nav').querySelectorAll('.nav__link');
-    const logo = link.closest('.nav').querySelector('img');
-
-    siblings.forEach(el => {
-      if (el !== link) el.style.opacity = 0.5;
-    });
-
-    logo.style.opacity = 0.5;
-  }
-});
+nav.addEventListener('mouseover', handleHover.bind(0.5));
 
 //mouseout is opposite to mouseover
 
-nav.addEventListener('mouseout', function (e) {
-  if (e.target.classList.contains('nav__link')) {
-    const link = e.target;
-    const siblings = link.closest('.nav').querySelectorAll('.nav__link');
-    const logo = link.closest('.nav').querySelector('img');
-
-    siblings.forEach(el => {
-      if (el !== link) el.style.opacity = 1;
-    });
-
-    logo.style.opacity = 1;
-  }
-});
+nav.addEventListener('mouseout', handleHover.bind(1));
 /////////////////////////////////
 //////LECTURES
 
