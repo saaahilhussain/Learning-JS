@@ -235,6 +235,34 @@ allSections.forEach(section => {
 
   section.classList.add('section--hidden');
 });
+
+//Lec 212 - Lazy Loading Images
+
+const loadImg = function (entries, observer) {
+  const [entry] = entries;
+
+  if (!entry.isIntersecting) return;
+
+  //replace all img with org src
+  entry.target.src = entry.target.dataset.src;
+
+  entry.target.addEventListener('load', function () {
+    entry.target.classList.remove('lazy-img');
+  });
+
+  observer.unobserve(entry.target);
+};
+
+const allImgs = document.querySelectorAll('img[data-src]');
+
+const observeImg = new IntersectionObserver(loadImg, {
+  root: null,
+  threshold: 0,
+  rootMargin: '200px',
+});
+
+allImgs.forEach(img => observeImg.observe(img));
+
 /////////////////////////////////
 //////LECTURES
 
