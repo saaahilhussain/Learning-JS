@@ -141,40 +141,70 @@ tabContainer.addEventListener('click', function (e) {
 });
 
 // Menu fade animation
-const handleHover = function (e) {
-  if (e.target.classList.contains('nav__link')) {
-    const link = e.target;
-    const siblings = link.closest('.nav').querySelectorAll('.nav__link');
-    const logo = link.closest('.nav').querySelector('img');
+// const handleHover = function (e) {
+//   if (e.target.classList.contains('nav__link')) {
+//     const link = e.target;
+//     const siblings = link.closest('.nav').querySelectorAll('.nav__link');
+//     const logo = link.closest('.nav').querySelector('img');
 
-    siblings.forEach(el => {
-      if (el !== link) el.style.opacity = this;
-    });
+//     siblings.forEach(el => {
+//       if (el !== link) el.style.opacity = this;
+//     });
 
-    logo.style.opacity = this;
-  }
+//     logo.style.opacity = this;
+//   }
+// };
+// // console.log(nav);
+// //we could also be using 'mouseenter' instead of 'mouseover' but the problem being - 'mouseenter' does not bubble during event delegation
+
+// //here bind is the opacity passed as "arguement", refer to the function definition for "this" keyword
+// nav.addEventListener('mouseover', handleHover.bind(0.5));
+
+// //mouseout is opposite to mouseover
+
+// nav.addEventListener('mouseout', handleHover.bind(1));
+
+// //Making the navigation after section 1
+
+// const initialCoords = section1.getBoundingClientRect();
+// // console.log(initialCoords);
+
+// window.addEventListener('scroll', function () {
+//   // console.log(window.scrollY);
+
+//   if (window.scrollY > initialCoords.top) nav.classList.add('sticky');
+//   else nav.classList.remove('sticky');
+// });
+
+//Sticky Navigation: The Intersection Observer API
+//does the same work above but more efficiently
+
+// const obsCallBack = function (entries, observer) {
+//   entries.forEach(entry => {
+//     console.log(entry);
+//   });
+// };
+// const obsOption = {
+//   root: null,
+//   threshold: 0.1,
+// };
+
+// const observer = new IntersectionObserver(obsCallBack, obsOption);
+// observer.observe(section1);
+
+const header = document.querySelector('.header');
+const stickyNav = function (entries) {
+  const [entry] = entries; //similary to [entry] = entries[0];
+
+  console.log(entry);
 };
-// console.log(nav);
-//we could also be using 'mouseenter' instead of 'mouseover' but the problem being - 'mouseenter' does not bubble during event delegation
-
-//here bind is the opacity passed as "arguement", refer to the function definition for "this" keyword
-nav.addEventListener('mouseover', handleHover.bind(0.5));
-
-//mouseout is opposite to mouseover
-
-nav.addEventListener('mouseout', handleHover.bind(1));
-
-//Making the navigation after section 1
-
-const initialCoords = section1.getBoundingClientRect();
-console.log(initialCoords);
-
-window.addEventListener('scroll', function () {
-  // console.log(window.scrollY);
-
-  if (window.scrollY > initialCoords.top) nav.classList.add('sticky');
-  else nav.classList.remove('sticky');
+const headerObserver = new IntersectionObserver(stickyNav, {
+  root: null,
+  threshold: 0,
 });
+
+headerObserver.observe(header);
+
 /////////////////////////////////
 //////LECTURES
 
@@ -351,3 +381,6 @@ window.addEventListener('scroll', function () {
 // [...h1.parentElement.children].forEach(function (el) {
 //   if (el !== h1) el.style.transform = 'scale(0.5)';
 // });
+
+//What is the intersection observer API?
+//The Intersection Observer API is a web API that allows developers to efficiently monitor the visibility and intersection of elements (like images, divs, etc.) within a web page, relative to a parent element or the viewport.
