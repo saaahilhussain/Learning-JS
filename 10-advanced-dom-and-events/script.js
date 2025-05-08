@@ -141,30 +141,30 @@ tabContainer.addEventListener('click', function (e) {
 });
 
 // Menu fade animation
-// const handleHover = function (e) {
-//   if (e.target.classList.contains('nav__link')) {
-//     const link = e.target;
-//     const siblings = link.closest('.nav').querySelectorAll('.nav__link');
-//     const logo = link.closest('.nav').querySelector('img');
+const handleHover = function (e) {
+  if (e.target.classList.contains('nav__link')) {
+    const link = e.target;
+    const siblings = link.closest('.nav').querySelectorAll('.nav__link');
+    const logo = link.closest('.nav').querySelector('img');
 
-//     siblings.forEach(el => {
-//       if (el !== link) el.style.opacity = this;
-//     });
+    siblings.forEach(el => {
+      if (el !== link) el.style.opacity = this;
+    });
 
-//     logo.style.opacity = this;
-//   }
-// };
-// // console.log(nav);
-// //we could also be using 'mouseenter' instead of 'mouseover' but the problem being - 'mouseenter' does not bubble during event delegation
+    logo.style.opacity = this;
+  }
+};
+// console.log(nav);
+//we could also be using 'mouseenter' instead of 'mouseover' but the problem being - 'mouseenter' does not bubble during event delegation
 
-// //here bind is the opacity passed as "arguement", refer to the function definition for "this" keyword
-// nav.addEventListener('mouseover', handleHover.bind(0.5));
+//here bind is the opacity passed as "arguement", refer to the function definition for "this" keyword
+nav.addEventListener('mouseover', handleHover.bind(0.5));
 
-// //mouseout is opposite to mouseover
+//mouseout is opposite to mouseover
 
-// nav.addEventListener('mouseout', handleHover.bind(1));
+nav.addEventListener('mouseout', handleHover.bind(1));
 
-// //Making the navigation after section 1
+// //Making the navigation appear with section 1
 
 // const initialCoords = section1.getBoundingClientRect();
 // // console.log(initialCoords);
@@ -194,10 +194,10 @@ tabContainer.addEventListener('click', function (e) {
 
 const header = document.querySelector('.header');
 const navHeight = nav.getBoundingClientRect().height;
-console.log(navHeight);
+// console.log(navHeight);
 const stickyNav = function (entries) {
   const [entry] = entries; //similary to [entry] = entries[0];
-  console.log(entry);
+  // console.log(entry);
   if (!entry.isIntersecting) nav.classList.add('sticky');
   else nav.classList.remove('sticky');
 };
@@ -209,6 +209,30 @@ const headerObserver = new IntersectionObserver(stickyNav, {
 
 headerObserver.observe(header);
 
+//Lec 210 - Reveal Sections (revealing elements on scroll)
+
+const allSections = document.querySelectorAll('.section');
+
+const revealSection = function (entries, observer) {
+  const [entry] = entries;
+
+  console.log(entry);
+
+  if (!entry.isIntersecting) return;
+  entry.target.classList.remove('section--hidden');
+  observer.unobserve(entry.target);
+};
+
+const sectionObserver = new IntersectionObserver(revealSection, {
+  root: null,
+  threshold: 0.15,
+});
+
+allSections.forEach(section => {
+  sectionObserver.observe(section);
+
+  section.classList.add('section--hidden');
+});
 /////////////////////////////////
 //////LECTURES
 
