@@ -126,6 +126,9 @@ class Person {
   calcAge() {
     console.log(2025 - this.birthYear);
   }
+  get age() {
+    return 2025 - this.birthYear;
+  }
   greet() {
     console.log(`Hi there, ${this.firstName}`);
   }
@@ -133,11 +136,29 @@ class Person {
 
 const sahil = new Person('Sahil', 2003);
 console.log(sahil);
-console.log(sahil.__proto__ === Person.prototype);
 sahil.calcAge();
+console.log(sahil.__proto__ === Person.prototype);
+console.log(sahil.age);
 
 // Person.prototype.greet = function () {
 //   console.log(`Hi there, ${this.firstName}`);
 // };
 
 sahil.greet();
+
+//Lec 227: setters and getts
+
+const account = {
+  owner: 'sahil',
+  movements: [100, 50, 200, 129],
+  get latest() {
+    return this.movements.slice(-1).pop();
+  },
+  set latest(mov) {
+    return this.movements.push(mov);
+  },
+};
+
+console.log(account.latest);
+account.latest = 729;
+console.log(account.latest);
