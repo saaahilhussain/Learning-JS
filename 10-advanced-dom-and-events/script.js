@@ -264,47 +264,89 @@ const observeImg = new IntersectionObserver(loadImg, {
 allImgs.forEach(img => observeImg.observe(img));
 
 //Sliders
+const slider = function () {
+  const slides = document.querySelectorAll('.slide');
+  const slider = document.querySelector('.slider');
+  const btnRight = document.querySelector('.slider__btn--right');
+  const btnLeft = document.querySelector('.slider__btn--left');
+  let curSlide = 0;
+  const maxSlide = slides.length;
+  const dotContainer = document.querySelector('.dots');
 
-const slides = document.querySelectorAll('.slide');
-const slider = document.querySelector('.slider');
-const btnRight = document.querySelector('.slider__btn--right');
-const btnLeft = document.querySelector('.slider__btn--left');
-let curSlide = 0;
-const maxSlide = slides.length;
+  //Functions
+  const createDots = function () {
+    slides.forEach(function (_, i) {
+      dotContainer.insertAdjacentHTML(
+        'beforeend',
+        `
+      <button class="dots__dot" data-slide="${i}"></button>
+      `
+      );
+    });
+  };
+  const activateDots = function (slide) {
+    document
+      .querySelectorAll('.dots__dot')
+      .forEach(dot => dot.classList.remove('dots__dot--active'));
 
-// slider.style.transform = 'scale(0.3) translateX(-800px)';
-// slider.style.overflow = 'visible';
+    document
+      .querySelector(`.dots__dot[data-slide="${slide}"]`)
+      .classList.add('dots__dot--active');
+  };
 
-const goToSlide = function (slide) {
-  slides.forEach(
-    (s, i) => (s.style.transform = `translate(${100 * (i - slide)}%)`)
-  );
+  const goToSlide = function (slide) {
+    slides.forEach(
+      (s, i) => (s.style.transform = `translate(${100 * (i - slide)}%)`)
+    );
+  };
+
+  const nextSlide = function () {
+    if (curSlide === maxSlide - 1) {
+      curSlide = 0;
+    } else curSlide++;
+
+    goToSlide(curSlide);
+    activateDots(curSlide);
+
+    //slide - 1: -100%, 0%, 100%, 200%
+  };
+
+  const prevSlide = function () {
+    if (curSlide === 0) {
+      curSlide = maxSlide - 1;
+    } else curSlide--;
+
+    goToSlide(curSlide);
+    activateDots(curSlide);
+  };
+
+  //init
+  const init = function () {
+    goToSlide(0);
+    createDots();
+    activateDots(0);
+  };
+  init();
+  btnRight.addEventListener('click', nextSlide);
+  btnLeft.addEventListener('click', prevSlide);
+  //Event Handlers
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowLeft') prevSlide();
+    e.key === 'ArrowRight' && nextSlide();
+    // if (e.key === 'ArrowRight') nextSlide();
+  });
+  dotContainer.addEventListener('click', function (e) {
+    if (e.target.classList.contains('dots__dot')) {
+      curSlide = Number(e.target.dataset.slide);
+      goToSlide(curSlide);
+      activateDots(curSlide);
+      // console.log('DOT');
+    }
+  });
 };
 
-goToSlide(0);
-// 0%, 100%, 200%, 300%
+slider();
 
-//Next Slide
-btnRight.addEventListener('click', function () {
-  if (curSlide === maxSlide - 1) {
-    curSlide = 0;
-  } else curSlide++;
-
-  goToSlide(curSlide);
-
-  //slide - 1: -100%, 0%, 100%, 200%
-});
-
-//Previous Slide
-btnLeft.addEventListener('click', function () {
-  if (curSlide === 0) {
-    curSlide = maxSlide - 1;
-  } else curSlide--;
-
-  goToSlide(curSlide);
-});
-
-// 0%, 100%, 200%, 300%
 /////////////////////////////////
 //////LECTURES
 
