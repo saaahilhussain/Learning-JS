@@ -84,3 +84,28 @@ console.log(arrNumber.unique());
 
 document.querySelector('h1'); //has deep nested prototypes
 console.dir(x => x + 1); //also has prototype since functions are objects and objects have prototypes
+
+//Solution to challenge 1
+
+const Car = function (make, speed) {
+  this.make = make;
+  this.speed = speed;
+};
+
+const bmw = new Car('BMW', 120);
+const mercedes = new Car('Mercedes', 120);
+
+Car.prototype.accelerate = function () {
+  this.speed += 10;
+  console.log(`${this.make} is going at a speed of ${this.speed} km/hr.`);
+};
+Car.prototype.brake = function () {
+  this.speed -= 10;
+  console.log(`${this.make} is going at a speed of ${this.speed} km/hr.`);
+};
+
+bmw.accelerate();
+bmw.brake();
+
+mercedes.accelerate();
+mercedes.brake();
