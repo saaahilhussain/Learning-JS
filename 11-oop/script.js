@@ -56,3 +56,31 @@ Person.prototype.relation = 'Friends';
 console.log(sahil);
 console.log(sahil.hasOwnProperty('relation'));
 console.log(sahil.hasOwnProperty('firstName'));
+
+//Prototypal Inheritance
+
+console.log(sahil.__proto__);
+//Object.prototype
+console.log(sahil.__proto__.__proto__);
+console.log(sahil.__proto__.__proto__.__proto__);
+
+console.dir(Person.prototype.constructor);
+
+const arr = [2, 6, 8, 4, 9];
+console.log(arr.__proto__ === Array.prototype);
+
+//Making a new array method using prototype
+
+Array.prototype.unique = function () {
+  return [...new Set(this)];
+};
+
+// console.log(Array.prototype)
+const number = '2266889944';
+const arrNumber = number.split('');
+console.log(arrNumber.unique());
+
+//It is also not recommended to add methods to in-built objects and functions to in-built objects. Another bad practice
+
+document.querySelector('h1'); //has deep nested prototypes
+console.dir(x => x + 1); //also has prototype since functions are objects and objects have prototypes
