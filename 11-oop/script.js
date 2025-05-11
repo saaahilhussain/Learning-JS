@@ -194,42 +194,89 @@
 // ford.speedUS = 60;
 // console.log(ford);
 
-//Lec - 231 - Inheritance between classes
+// //Lec - 231 - Inheritance between classes
 
-const Person = function (firstName, birthYear) {
-  this.firstName = firstName;
-  this.birthYear = birthYear;
+// const Person = function (firstName, birthYear) {
+//   this.firstName = firstName;
+//   this.birthYear = birthYear;
+// };
+
+// Person.prototype.calcAge = function () {
+//   console.log(2025 - this.birthYear);
+// };
+
+// const Student = function (firstName, birthYear, course) {
+//   Person.call(this, firstName, birthYear);
+//   this.course = course;
+// };
+
+// //Linking prototypes
+
+// Student.prototype = Object.create(Person.prototype);
+
+// Student.prototype.introduce = function () {
+//   console.log(`Hi, my name is ${this.firstName} and I study ${this.course}`);
+// };
+
+// const arup = new Student('arup', 2002, 'Medical Science');
+// console.log(arup);
+
+// arup.introduce();
+// arup.calcAge();
+
+// console.log(arup.__proto__);
+// console.log(arup.__proto__.__proto__);
+
+// console.log(arup instanceof Student);
+// console.log(arup instanceof Person);
+// console.log(arup instanceof Object);
+
+// Student.prototype.constructor = Student;
+// console.dir(Student.prototype.constructor);
+
+// solution to exercise / coding challenge 3 :-
+
+const Car = function (make, speed) {
+  this.make = make;
+  this.speed = speed;
 };
 
-Person.prototype.calcAge = function () {
-  console.log(2025 - this.birthYear);
+const bmw = new Car('BMW', 120);
+const mercedes = new Car('Mercedes', 120);
+
+Car.prototype.accelerate = function () {
+  this.speed += 10;
+  console.log(`${this.make} is going at a speed of ${this.speed} km/hr.`);
+};
+Car.prototype.brake = function () {
+  this.speed -= 10;
+  console.log(`${this.make} is going at a speed of ${this.speed} km/hr.`);
 };
 
-const Student = function (firstName, birthYear, course) {
-  Person.call(this, firstName, birthYear);
-  this.course = course;
+const EV = function (make, speed, charge) {
+  Car.call(this, make, speed);
+  this.charge = charge;
 };
 
-//Linking prototypes
+//Linking the prototype
 
-Student.prototype = Object.create(Person.prototype);
-
-Student.prototype.introduce = function () {
-  console.log(`Hi, my name is ${this.firstName} and I study ${this.course}`);
+EV.prototype = Object.create(Car.prototype);
+EV.prototype.chargeBattery = function (chargeTo) {
+  this.charge = chargeTo;
 };
 
-const arup = new Student('arup', 2002, 'Medical Science');
-console.log(arup);
+EV.prototype.accelerate = function () {
+  this.speed += 20;
+  this.charge--;
+  console.log(
+    `${this.make} is going at a speed of ${this.speed} km/hr. with a charge of ${this.charge}`
+  );
+};
 
-arup.introduce();
-arup.calcAge();
-
-console.log(arup.__proto__);
-console.log(arup.__proto__.__proto__);
-
-console.log(arup instanceof Student);
-console.log(arup instanceof Person);
-console.log(arup instanceof Object);
-
-Student.prototype.constructor = Student;
-console.dir(Student.prototype.constructor);
+const Tesla = new EV('Tesla', 120, 23);
+Tesla.chargeBattery(40);
+console.log(Tesla);
+Tesla.brake();
+Tesla.accelerate();
+Tesla.accelerate();
+Tesla.accelerate();
