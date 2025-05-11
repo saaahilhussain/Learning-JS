@@ -124,7 +124,7 @@ class Person {
 
   //Methods will be added to the .prototype property
   calcAge() {
-    console.log(ch2025 - this.birthYear);
+    console.log(2025 - this.birthYear);
   }
   get age() {
     return 2025 - this.birthYear;
@@ -180,8 +180,16 @@ class CarCl {
   get speedUS() {
     return this.speed / 1.6;
   }
+  set speedUS(speed) {
+    this.speed = speed * 1.6;
+  }
 }
 
 const ford = new CarCl('Ford', 120);
 console.log(ford.speedUS);
 ford.accelerate();
+ford.accelerate();
+ford.brake();
+
+ford.speedUS = 60;
+console.log(ford);
