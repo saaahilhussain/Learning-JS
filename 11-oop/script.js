@@ -336,32 +336,72 @@
 
 // Lec - 233 : Inheritance betn classes - Object.create
 
-const PersonProto = {
-  calcAge() {
-    console.log(2025 - this.birthYear);
-  },
+// const PersonProto = {
+//   calcAge() {
+//     console.log(2025 - this.birthYear);
+//   },
 
-  init(firstName, birthYear) {
-    this.firstName = firstName;
-    this.birthYear = birthYear;
-  },
-};
+//   init(firstName, birthYear) {
+//     this.firstName = firstName;
+//     this.birthYear = birthYear;
+//   },
+// };
 
-const amrit = Object.create(PersonProto);
-// console.dir(amrit);
+// const amrit = Object.create(PersonProto);
+// // console.dir(amrit);
 
-const StudentProto = Object.create(PersonProto);
-StudentProto.init = function (firstName, birthYear, course) {
-  PersonProto.init.call(this, firstName, birthYear);
-  this.course = course;
-};
+// const StudentProto = Object.create(PersonProto);
+// StudentProto.init = function (firstName, birthYear, course) {
+//   PersonProto.init.call(this, firstName, birthYear);
+//   this.course = course;
+// };
 
-StudentProto.introduce = function () {
-  console.table(`Hi my name is ${this.firstName} and I study ${this.course}.`);
-};
+// StudentProto.introduce = function () {
+//   console.table(`Hi my name is ${this.firstName} and I study ${this.course}.`);
+// };
 
-const shakilur = Object.create(StudentProto);
-shakilur.init('shakilur', 2001, 'BioTechnology');
-console.log(shakilur);
-shakilur.introduce();
-shakilur.calcAge();
+// const shakilur = Object.create(StudentProto);
+// shakilur.init('shakilur', 2001, 'BioTechnology');
+// console.log(shakilur);
+// shakilur.introduce();
+// shakilur.calcAge();
+
+// Lec 235 - More on Classes
+
+class Account {
+  constructor(owner, currency, pin) {
+    this.owner = owner;
+    this.currency = currency;
+    this.pin = pin;
+
+    this.movements = [];
+    this.locale = navigator.language;
+    console.log(`Thanks for opening an account Mr. ${owner}.`);
+  }
+
+  //Public Interface
+  deposit(val) {
+    this.movements.push(val);
+  }
+  withdraw(val) {
+    this.deposit(-val);
+  }
+
+  approveLoan(val) {
+    return true;
+  }
+  requestLoan(val) {
+    if (this.approveLoan(val)) {
+      this.deposit(val);
+      console.log(`Loan approved.`);
+    }
+  }
+}
+
+const acc1 = new Account('Sahil', 'INR-USD', 1212);
+acc1.deposit(299);
+acc1.withdraw(125);
+
+acc1.requestLoan(500);
+acc1.approveLoan(500);
+console.log(acc1);
