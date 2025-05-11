@@ -116,80 +116,120 @@
 
 //class Declaration
 
-class Person {
-  constructor(firstName, birthYear) {
-    this.firstName = firstName;
-    this.birthYear = birthYear;
-  }
+// class Person {
+//   constructor(firstName, birthYear) {
+//     this.firstName = firstName;
+//     this.birthYear = birthYear;
+//   }
 
-  //Methods will be added to the .prototype property
-  calcAge() {
-    console.log(2025 - this.birthYear);
-  }
-  get age() {
-    return 2025 - this.birthYear;
-  }
-  greet() {
-    console.log(`Hi there, ${this.firstName}`);
-  }
-}
+//   //Methods will be added to the .prototype property
+//   calcAge() {
+//     console.log(2025 - this.birthYear);
+//   }
+//   get age() {
+//     return 2025 - this.birthYear;
+//   }
+//   greet() {
+//     console.log(`Hi there, ${this.firstName}`);
+//   }
+// }
 
-const sahil = new Person('Sahil', 2003);
-console.log(sahil);
-sahil.calcAge();
-console.log(sahil.__proto__ === Person.prototype);
-console.log(sahil.age);
+// const sahil = new Person('Sahil', 2003);
+// console.log(sahil);
+// sahil.calcAge();
+// console.log(sahil.__proto__ === Person.prototype);
+// console.log(sahil.age);
 
-// Person.prototype.greet = function () {
-//   console.log(`Hi there, ${this.firstName}`);
+// // Person.prototype.greet = function () {
+// //   console.log(`Hi there, ${this.firstName}`);
+// // };
+
+// sahil.greet();
+
+// //Lec 227: setters and getts
+
+// const account = {
+//   owner: 'sahil',
+//   movements: [100, 50, 200, 129],
+//   get latest() {
+//     return this.movements.slice(-1).pop();
+//   },
+//   set latest(mov) {
+//     return this.movements.push(mov);
+//   },
 // };
 
-sahil.greet();
+// console.log(account.latest);
+// account.latest = 729;
+// console.log(account.latest);
 
-//Lec 227: setters and getts
+// //solution to coding challenge 2
+// class CarCl {
+//   constructor(make, speed) {
+//     this.make = make;
+//     this.speed = speed;
+//   }
+//   accelerate() {
+//     this.speed += 10;
+//     console.log(`${this.make} is going at a speed of ${this.speed} km/hr.`);
+//   }
+//   brake() {
+//     this.speed -= 10;
+//     console.log(`${this.make} is going at a speed of ${this.speed} km/hr.`);
+//   }
+//   get speedUS() {
+//     return this.speed / 1.6;
+//   }
+//   set speedUS(speed) {
+//     this.speed = speed * 1.6;
+//   }
+// }
 
-const account = {
-  owner: 'sahil',
-  movements: [100, 50, 200, 129],
-  get latest() {
-    return this.movements.slice(-1).pop();
-  },
-  set latest(mov) {
-    return this.movements.push(mov);
-  },
+// const ford = new CarCl('Ford', 120);
+// console.log(ford.speedUS);
+// ford.accelerate();
+// ford.accelerate();
+// ford.brake();
+
+// ford.speedUS = 60;
+// console.log(ford);
+
+//Lec - 231 - Inheritance between classes
+
+const Person = function (firstName, birthYear) {
+  this.firstName = firstName;
+  this.birthYear = birthYear;
 };
 
-console.log(account.latest);
-account.latest = 729;
-console.log(account.latest);
+Person.prototype.calcAge = function () {
+  console.log(2025 - this.birthYear);
+};
 
-//solution to coding challenge 2
-class CarCl {
-  constructor(make, speed) {
-    this.make = make;
-    this.speed = speed;
-  }
-  accelerate() {
-    this.speed += 10;
-    console.log(`${this.make} is going at a speed of ${this.speed} km/hr.`);
-  }
-  brake() {
-    this.speed -= 10;
-    console.log(`${this.make} is going at a speed of ${this.speed} km/hr.`);
-  }
-  get speedUS() {
-    return this.speed / 1.6;
-  }
-  set speedUS(speed) {
-    this.speed = speed * 1.6;
-  }
-}
+const Student = function (firstName, birthYear, course) {
+  Person.call(this, firstName, birthYear);
+  this.course = course;
+};
 
-const ford = new CarCl('Ford', 120);
-console.log(ford.speedUS);
-ford.accelerate();
-ford.accelerate();
-ford.brake();
+//Linking prototypes
 
-ford.speedUS = 60;
-console.log(ford);
+Student.prototype = Object.create(Person.prototype);
+
+Student.prototype.introduce = function () {
+  console.log(`Hi, my name is ${this.firstName} and I study ${this.course}`);
+};
+
+const arup = new Student('arup', 2002, 'Medical Science');
+console.log(arup);
+
+arup.introduce();
+arup.calcAge();
+
+console.log(arup.__proto__);
+console.log(arup.__proto__.__proto__);
+
+console.log(arup instanceof Student);
+console.log(arup instanceof Person);
+console.log(arup instanceof Object);
+
+Student.prototype.constructor = Student;
+console.dir(Student.prototype.constructor);
