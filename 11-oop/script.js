@@ -236,47 +236,100 @@
 
 // solution to exercise / coding challenge 3 :-
 
-const Car = function (make, speed) {
-  this.make = make;
-  this.speed = speed;
-};
+// const Car = function (make, speed) {
+//   this.make = make;
+//   this.speed = speed;
+// };
 
-const bmw = new Car('BMW', 120);
-const mercedes = new Car('Mercedes', 120);
+// const bmw = new Car('BMW', 120);
+// const mercedes = new Car('Mercedes', 120);
 
-Car.prototype.accelerate = function () {
-  this.speed += 10;
-  console.log(`${this.make} is going at a speed of ${this.speed} km/hr.`);
-};
-Car.prototype.brake = function () {
-  this.speed -= 10;
-  console.log(`${this.make} is going at a speed of ${this.speed} km/hr.`);
-};
+// Car.prototype.accelerate = function () {
+//   this.speed += 10;
+//   console.log(`${this.make} is going at a speed of ${this.speed} km/hr.`);
+// };
+// Car.prototype.brake = function () {
+//   this.speed -= 10;
+//   console.log(`${this.make} is going at a speed of ${this.speed} km/hr.`);
+// };
 
-const EV = function (make, speed, charge) {
-  Car.call(this, make, speed);
-  this.charge = charge;
-};
+// const EV = function (make, speed, charge) {
+//   Car.call(this, make, speed);
+//   this.charge = charge;
+// };
 
-//Linking the prototype
+// //Linking the prototype
 
-EV.prototype = Object.create(Car.prototype);
-EV.prototype.chargeBattery = function (chargeTo) {
-  this.charge = chargeTo;
-};
+// EV.prototype = Object.create(Car.prototype);
+// EV.prototype.chargeBattery = function (chargeTo) {
+//   this.charge = chargeTo;
+// };
 
-EV.prototype.accelerate = function () {
-  this.speed += 20;
-  this.charge--;
-  console.log(
-    `${this.make} is going at a speed of ${this.speed} km/hr. with a charge of ${this.charge}`
-  );
-};
+// EV.prototype.accelerate = function () {
+//   this.speed += 20;
+//   this.charge--;
+//   console.log(
+//     `${this.make} is going at a speed of ${this.speed} km/hr. with a charge of ${this.charge}`
+//   );
+// };
 
-const Tesla = new EV('Tesla', 120, 23);
-Tesla.chargeBattery(40);
-console.log(Tesla);
-Tesla.brake();
-Tesla.accelerate();
-Tesla.accelerate();
-Tesla.accelerate();
+// const Tesla = new EV('Tesla', 120, 23);
+// Tesla.chargeBattery(40);
+// console.log(Tesla);
+// Tesla.brake();
+// Tesla.accelerate();
+// Tesla.accelerate();
+// Tesla.accelerate();
+
+// Lec - 233 : Inheritance betn classes - ES-Classes
+
+class PersonCl {
+  constructor(fullName, birthYear) {
+    this.fullName = fullName;
+    this.birthYear = birthYear;
+  }
+
+  calcAge() {
+    console.log(2025 - this.birthYear);
+  }
+  get age() {
+    return 2025 - this.birthYear;
+  }
+  greet() {
+    console.log(`Hi there, ${this.fullName}`);
+  }
+
+  set fullName(name) {
+    if (name.includes(' ')) this._fullName = name;
+    else alert(`${name} is not a full name!`);
+  }
+  get fullName() {
+    return this._fullName;
+  }
+}
+
+class StudentCl extends PersonCl {
+  constructor(fullName, birthYear, course) {
+    //always needs to happen first in order to set the "this"
+    super(fullName, birthYear);
+    this.course = course;
+  }
+  introduce() {
+    console.table(`Hi my name is ${this.fullName} and I study ${this.course}.`);
+  }
+  calcAge() {
+    console.log(
+      `I'm ${
+        2025 - this.birthYear
+      } years old. But given these circumstances, I feel more like a ${
+        2025 - this.birthYear + 15
+      } year old instead :(...`
+    );
+  }
+}
+const sahil = new StudentCl('Sahil Hussain', 2003, 'Computer Science');
+
+console.log(sahil);
+
+sahil.introduce();
+sahil.calcAge();
