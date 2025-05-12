@@ -430,12 +430,16 @@ class Account {
   //Public Interface (API)
   getMovements() {
     return this.#movements;
+    //NOt chainable
+    //can only be added at the end of the chain
   }
   deposit(val) {
     this.#movements.push(val);
+    return this;
   }
   withdraw(val) {
     this.deposit(-val);
+    return this;
   }
 
   #approveLoan(val) {
@@ -447,6 +451,7 @@ class Account {
       this.deposit(val);
       console.log(`Loan approved.`);
     }
+    return this;
   }
 }
 
@@ -458,3 +463,16 @@ acc1.requestLoan(500);
 // acc1.#approveLoan(500);
 acc1.deposit(3000);
 console.log(acc1);
+
+//lec 237 : Chaining the methods
+
+const movements = acc1
+  .deposit(10)
+  .deposit(50)
+  .withdraw(100)
+  .deposit(16)
+  .requestLoan(500)
+  .withdraw(10)
+  .getMovements();
+
+console.log(movements);
