@@ -412,67 +412,128 @@
 // 3. Public Methods
 // 4. Private Methods
 
-class Account {
-  locale = navigator.language;
-  bank = 'Bankist';
-  #movements = [];
-  #pin;
-  constructor(owner, currency, pin) {
-    this.owner = owner;
-    this.currency = currency;
-    this.#pin = pin;
+// class Account {
+//   locale = navigator.language;
+//   bank = 'Bankist';
+//   #movements = [];
+//   #pin;
+//   constructor(owner, currency, pin) {
+//     this.owner = owner;
+//     this.currency = currency;
+//     this.#pin = pin;
 
-    // this.movements = [];
-    // this.locale = navigator.language;
-    console.log(`Thanks for opening an account Mr. ${owner}.`);
-  }
+//     // this.movements = [];
+//     // this.locale = navigator.language;
+//     console.log(`Thanks for opening an account Mr. ${owner}.`);
+//   }
 
-  //Public Interface (API)
-  getMovements() {
-    return this.#movements;
-    //NOt chainable
-    //can only be added at the end of the chain
+//   //Public Interface (API)
+//   getMovements() {
+//     return this.#movements;
+//     //NOt chainable
+//     //can only be added at the end of the chain
+//   }
+//   deposit(val) {
+//     this.#movements.push(val);
+//     return this;
+//   }
+//   withdraw(val) {
+//     this.deposit(-val);
+//     return this;
+//   }
+
+//   #approveLoan(val) {
+//     //private method
+//     return true;
+//   }
+//   requestLoan(val) {
+//     if (this.#approveLoan(val)) {
+//       this.deposit(val);
+//       console.log(`Loan approved.`);
+//     }
+//     return this;
+//   }
+// }
+
+// const acc1 = new Account('Sahil', 'INR-USD', 1212);
+// acc1.deposit(299);
+// acc1.withdraw(125);
+
+// acc1.requestLoan(500);
+// // acc1.#approveLoan(500);
+// acc1.deposit(3000);
+// console.log(acc1);
+
+// //lec 237 : Chaining the methods
+
+// const movements = acc1
+//   .deposit(10)
+//   .deposit(50)
+//   .withdraw(100)
+//   .deposit(16)
+//   .requestLoan(500)
+//   .withdraw(10)
+//   .getMovements();
+
+// console.log(movements);
+
+// Soluction to Exercise 4 / coding challenge 4
+class CarCl {
+  constructor(make, speed) {
+    this.make = make;
+    this.speed = speed;
   }
-  deposit(val) {
-    this.#movements.push(val);
+  accelerate() {
+    this.speed += 10;
+    console.log(`${this.make} is going at a speed of ${this.speed} km/hr.`);
+  }
+  brake() {
+    this.speed -= 10;
+    console.log(`${this.make} is going at a speed of ${this.speed} km/hr.`);
     return this;
   }
-  withdraw(val) {
-    this.deposit(-val);
+  get speedUS() {
+    return this.speed / 1.6;
+  }
+  set speedUS(speed) {
+    this.speed = speed * 1.6;
+  }
+}
+
+class EVCl extends CarCl {
+  #charge;
+  constructor(make, speed, charge) {
+    super(make, speed);
+    this.#charge = charge;
+  }
+
+  chargeBattery(chargeTo) {
+    this.#charge = chargeTo;
     return this;
   }
 
-  #approveLoan(val) {
-    //private method
-    return true;
-  }
-  requestLoan(val) {
-    if (this.#approveLoan(val)) {
-      this.deposit(val);
-      console.log(`Loan approved.`);
-    }
+  accelerate() {
+    this.speed += 20;
+    this.#charge--;
+    console.log(
+      `${this.make} is going at a speed of ${
+        this.speed
+      } km/hr. with a charge of ${this.#charge}`
+    );
     return this;
   }
 }
 
-const acc1 = new Account('Sahil', 'INR-USD', 1212);
-acc1.deposit(299);
-acc1.withdraw(125);
+const rivian = new EVCl('rivian', 120, 20);
+console.log(rivian);
 
-acc1.requestLoan(500);
-// acc1.#approveLoan(500);
-acc1.deposit(3000);
-console.log(acc1);
+rivian
+  .accelerate()
+  .accelerate()
+  .accelerate()
+  .brake()
+  .chargeBattery(50)
+  .brake()
+  .accelerate();
 
-//lec 237 : Chaining the methods
-
-const movements = acc1
-  .deposit(10)
-  .deposit(50)
-  .withdraw(100)
-  .deposit(16)
-  .requestLoan(500)
-  .withdraw(10)
-  .getMovements();
-
-console.log(movements);
+  console.log(rivian.speedUS);
