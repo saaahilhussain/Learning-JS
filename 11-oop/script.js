@@ -368,30 +368,82 @@
 
 // Lec 235 - More on Classes
 
+// class Account {
+//   constructor(owner, currency, pin) {
+//     this.owner = owner;
+//     this.currency = currency;
+//     this.pin = pin;
+
+//     this.movements = [];
+//     this.locale = navigator.language;
+//     console.log(`Thanks for opening an account Mr. ${owner}.`);
+//   }
+
+//   //Public Interface
+//   deposit(val) {
+//     this.movements.push(val);
+//   }
+//   withdraw(val) {
+//     this.deposit(-val);
+//   }
+
+//   approveLoan(val) {
+//     return true;
+//   }
+//   requestLoan(val) {
+//     if (this.approveLoan(val)) {
+//       this.deposit(val);
+//       console.log(`Loan approved.`);
+//     }
+//   }
+// }
+
+// const acc1 = new Account('Sahil', 'INR-USD', 1212);
+// acc1.deposit(299);
+// acc1.withdraw(125);
+
+// acc1.requestLoan(500);
+// acc1.approveLoan(500);
+// console.log(acc1);
+
+//Lec - 236: Encapsulation:Private Class Fields and Methods
+// 1. Public Fields
+// 2. Private Fields
+// 3. Public Methods
+// 4. Private Methods
+
 class Account {
+  locale = navigator.language;
+  bank = 'Bankist';
+  #movements = [];
+  #pin;
   constructor(owner, currency, pin) {
     this.owner = owner;
     this.currency = currency;
-    this.pin = pin;
+    this.#pin = pin;
 
-    this.movements = [];
-    this.locale = navigator.language;
+    // this.movements = [];
+    // this.locale = navigator.language;
     console.log(`Thanks for opening an account Mr. ${owner}.`);
   }
 
-  //Public Interface
+  //Public Interface (API)
+  getMovements() {
+    return this.#movements;
+  }
   deposit(val) {
-    this.movements.push(val);
+    this.#movements.push(val);
   }
   withdraw(val) {
     this.deposit(-val);
   }
 
-  approveLoan(val) {
+  #approveLoan(val) {
+    //private method
     return true;
   }
   requestLoan(val) {
-    if (this.approveLoan(val)) {
+    if (this.#approveLoan(val)) {
       this.deposit(val);
       console.log(`Loan approved.`);
     }
@@ -403,5 +455,6 @@ acc1.deposit(299);
 acc1.withdraw(125);
 
 acc1.requestLoan(500);
-acc1.approveLoan(500);
+// acc1.#approveLoan(500);
+acc1.deposit(3000);
 console.log(acc1);
