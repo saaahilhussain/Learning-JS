@@ -10,3 +10,46 @@ const countriesContainer = document.querySelector('.countries');
 // https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}
 
 ///////////////////////////////////////
+
+const getCountryData = function (country) {
+  const request = new XMLHttpRequest();
+  request.open('GET', `https://restcountries.com/v3.1/name/${country}`);
+  request.send();
+
+  request.addEventListener('load', function () {
+    const [data] = JSON.parse(this.responseText);
+
+    console.log(data);
+    // Extract languages (values of object)
+    const languages = data.languages
+      ? Object.values(data.languages).join(', ')
+      : 'N/A';
+
+    // Extract currencies (get the first currency name)
+    const currency = data.currencies
+      ? Object.values(data.currencies)[0].name
+      : 'N/A';
+
+    const html = `
+      <article class="country">
+        <img class="country__img" src="${data.flags.svg}" />
+        <div class="country__data">
+          <h3 class="country__name">${data.name.common}</h3>
+          <h4 class="country__region">${data.region}</h4>
+          <p class="country__row"><span>👫</span>${(
+            +data.population / 1000000
+          ).toFixed(1)}M People</p>
+          <p class="country__row"><span>🗣️</span>${languages}</p>
+          <p class="country__row"><span>💰</span>${currency}</p>
+        </div>
+      </article>
+    `;
+
+    countriesContainer.insertAdjacentHTML('beforeend', html);
+    countriesContainer.style.opacity = 1;
+  });
+};
+
+getCountryData('india');
+getCountryData('usa');
+getCountryData('russia');
