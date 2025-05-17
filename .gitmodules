@@ -4,3 +4,6 @@
 [submodule "05-dice-game"]
 	path = 05-dice-game
 	url = https://github.com/saaahilhussain/Pig-game
+[submodule "12-mapty-app"]
+	path = 12-mapty-app
+	url = https://github.com/saaahilhussain/Mapty-App.git
