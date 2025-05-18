@@ -54,7 +54,7 @@ const countriesContainer = document.querySelector('.countries');
 
 ///////////////////////////
 //Lec 262 - Callback Hell
-/*
+
 const renderCountry = function (data, className = '') {
   // Extract languages (values of object)
   const languages = data.languages
@@ -84,7 +84,7 @@ const renderCountry = function (data, className = '') {
   countriesContainer.insertAdjacentHTML('beforeend', html);
   countriesContainer.style.opacity = 1;
 };
-
+/*
 const getCountryAndNeighbourData = function (country) {
   const request = new XMLHttpRequest();
   request.open('GET', `https://restcountries.com/v3.1/name/${country}`);
@@ -124,14 +124,8 @@ getCountryAndNeighbourData('russia');
 // console.log(request);
 
 const getCountryData = function (country) {
-  fetch(`https://restcountries.com/v2/name/${country}`)
-    .then(function (response) {
-      console.log(response);
-      return response.json();
-    })
-    .then(function (data) {
-      console.log(data);
-      console.log(data[0]);
-    });
+  const request = fetch(`https://restcountries.com/v3.1/name/${country}`)
+    .then(response => response.json())
+    .then(data => renderCountry(data[0]));
 };
-getCountryData('russia');
+getCountryData('india');
