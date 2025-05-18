@@ -54,7 +54,7 @@ const countriesContainer = document.querySelector('.countries');
 
 ///////////////////////////
 //Lec 262 - Callback Hell
-
+/*
 const renderCountry = function (data, className = '') {
   // Extract languages (values of object)
   const languages = data.languages
@@ -115,3 +115,23 @@ const getCountryAndNeighbourData = function (country) {
 };
 
 getCountryAndNeighbourData('russia');
+*/
+
+/////////////////////////////////////
+// Lec 264 - Consuming Promises
+
+// const request = fetch('https://restcountries.com/v2/name/india');
+// console.log(request);
+
+const getCountryData = function (country) {
+  fetch(`https://restcountries.com/v2/name/${country}`)
+    .then(function (response) {
+      console.log(response);
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data);
+      console.log(data[0]);
+    });
+};
+getCountryData('russia');
