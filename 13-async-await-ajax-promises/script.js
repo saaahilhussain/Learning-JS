@@ -3,6 +3,41 @@
 const btn = document.querySelector('.btn-country');
 const countriesContainer = document.querySelector('.countries');
 
+const renderCountry = function (data, className = '') {
+  // Extract languages (values of object)
+  const languages = data.languages
+    ? Object.values(data.languages).join(', ')
+    : 'N/A';
+
+  // Extract currencies (get the first currency name)
+  const currency = data.currencies
+    ? Object.values(data.currencies)[0].name
+    : 'N/A';
+
+  const html = `
+      <article class="country ${className}">
+        <img class="country__img" src="${data.flags.svg}" />
+        <div class="country__data">
+          <h3 class="country__name">${data.name.common}</h3>
+          <h4 class="country__region">${data.region}</h4>
+          <p class="country__row"><span>👫</span>${(
+            +data.population / 1000000
+          ).toFixed(1)}M People</p>
+          <p class="country__row"><span>🗣️</span>${languages}</p>
+          <p class="country__row"><span>💰</span>${currency}</p>
+        </div>
+      </article>
+    `;
+
+  countriesContainer.insertAdjacentHTML('beforeend', html);
+  countriesContainer.style.opacity = 1;
+};
+
+const renderError = function (msg) {
+  countriesContainer.insertAdjacentText('beforeend', msg);
+  countriesContainer.style.opacity = 1;
+};
+
 // NEW COUNTRIES API URL (use instead of the URL shown in videos):
 // https://restcountries.com/v2/name/portugal
 
@@ -55,35 +90,6 @@ const countriesContainer = document.querySelector('.countries');
 ///////////////////////////
 //Lec 262 - Callback Hell
 
-const renderCountry = function (data, className = '') {
-  // Extract languages (values of object)
-  const languages = data.languages
-    ? Object.values(data.languages).join(', ')
-    : 'N/A';
-
-  // Extract currencies (get the first currency name)
-  const currency = data.currencies
-    ? Object.values(data.currencies)[0].name
-    : 'N/A';
-
-  const html = `
-      <article class="country ${className}">
-        <img class="country__img" src="${data.flags.svg}" />
-        <div class="country__data">
-          <h3 class="country__name">${data.name.common}</h3>
-          <h4 class="country__region">${data.region}</h4>
-          <p class="country__row"><span>👫</span>${(
-            +data.population / 1000000
-          ).toFixed(1)}M People</p>
-          <p class="country__row"><span>🗣️</span>${languages}</p>
-          <p class="country__row"><span>💰</span>${currency}</p>
-        </div>
-      </article>
-    `;
-
-  countriesContainer.insertAdjacentHTML('beforeend', html);
-  countriesContainer.style.opacity = 1;
-};
 /*
 const getCountryAndNeighbourData = function (country) {
   const request = new XMLHttpRequest();
@@ -136,6 +142,12 @@ const getCountryData = function (country) {
       return fetch(`https://restcountries.com/v3.1/alpha/${neighbour}`);
     })
     .then(response => response.json())
-    .then(data => renderCountry(data[0], 'neighbour'));
+    .then(data => renderCountry(data[0], 'neighbour'))
+    .catch(err => {
+      console.error(`${err} ERROR AAHISE BHAI`);
+      renderError(`Error ahise bhai: ${err.message}.`);
+    });
 };
-getCountryData('russia');
+btn.addEventListener('click', function () {
+  getCountryData('russia');
+});
