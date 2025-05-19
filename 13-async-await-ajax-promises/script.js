@@ -156,14 +156,17 @@ getCountryAndNeighbourData('russia');
 ///////////////////////////////////
 //Lec 267 - Throwing Errors Manually
 
+const getJSON = function (url) {
+  return fetch(url).then(response => {
+    console.log(response);
+    if (!response.ok)
+      throw new Error(`Country not found :( ${response.status}`);
+    return response.json();
+  });
+};
+
 const getCountryData = function (country) {
-  const request = fetch(`https://restcountries.com/v3.1/name/${country}`)
-    .then(response => {
-      console.log(response);
-      if (!response.ok)
-        throw new Error(`Country not found :( ${response.status}`);
-      return response.json();
-    })
+  getJSON(`https://restcountries.com/v3.1/name/${country}`)
     .then(data => {
       renderCountry(data[0]);
       const neighbour = data[0].borders?.[0];
@@ -171,9 +174,8 @@ const getCountryData = function (country) {
       if (!neighbour) throw new Error(`Neighbour not found`);
 
       //country 2 - neighbour
-      return fetch(`https://restcountries.com/v3.1/alpha/${neighbour}`);
+      return getJSON(`https://restcountries.com/v3.1/alpha/${neighbour}`);
     })
-    .then(response => response.json())
     .then(data => renderCountry(data[0], 'neighbour'))
     .catch(err => {
       console.error(`${err} Error.`);
