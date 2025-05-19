@@ -30,7 +30,7 @@ const renderCountry = function (data, className = '') {
     `;
 
   countriesContainer.insertAdjacentHTML('beforeend', html);
-  countriesContainer.style.opacity = 1;
+  // countriesContainer.style.opacity = 1;
 };
 
 const renderError = function (msg) {
@@ -155,10 +155,10 @@ getCountryAndNeighbourData('russia');
 
 ///////////////////////////////////
 //Lec 267 - Throwing Errors Manually
-/*
+
 const getJSON = function (url) {
   return fetch(url).then(response => {
-    console.log(response);
+    // console.log(response);
     if (!response.ok)
       throw new Error(`Country not found :( ${response.status}`);
     return response.json();
@@ -184,34 +184,33 @@ const getCountryData = function (country) {
     .finally(() => (countriesContainer.style.opacity = 1));
 };
 btn.addEventListener('click', function () {
-  getCountryData('australia');
+  getCountryData('russia');
 });
-*/
 
 ///////////////////////////////////
 // Lec 268 - Coding challenge 1
 
-const whereAmI = function (lat, lng) {
-  fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}
-`)
-    .then(res => {
-      if (!res.ok) throw new Error(`Problem with geocoding: ${res.status}`);
-      return res.json();
-    })
-    .then(data => {
-      // console.log(data);
-      console.log(`country: ${data.countryName}, city: ${data.city}`);
+// const whereAmI = function (lat, lng) {
+//   fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}
+// `)
+//     .then(res => {
+//       if (!res.ok) throw new Error(`Problem with geocoding: ${res.status}`);
+//       return res.json();
+//     })
+//     .then(data => {
+//       // console.log(data);
+//       console.log(`country: ${data.countryName}, city: ${data.city}`);
 
-      return fetch(`https://restcountries.com/v3.1/name/${data.countryCode}`);
-    })
-    .then(res => {
-      if (!res.ok) throw new Error(`Problem with geocoding: ${res.status}`);
-      return res.json();
-    })
-    .then(data => renderCountry(data[0]))
-    .catch(err => console.log(`${err.message}`));
-};
+//       return fetch(`https://restcountries.com/v3.1/name/${data.countryCode}`);
+//     })
+//     .then(res => {
+//       if (!res.ok) throw new Error(`Problem with geocoding: ${res.status}`);
+//       return res.json();
+//     })
+//     .then(data => renderCountry(data[0]))
+//     .catch(err => console.log(`${err.message}`));
+// };
 
-whereAmI(65, 94);
-whereAmI(1, 10);
-whereAmI(26, 91);
+// whereAmI(65, 94);
+// whereAmI(1, 10);
+// whereAmI(26, 91);
