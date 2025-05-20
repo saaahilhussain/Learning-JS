@@ -219,7 +219,7 @@ btn.addEventListener('click', function () {
 // Lec 271 - Building a promise
 
 const lottery = new Promise(function (resolve, reject) {
-  console.log('lottery draw has started... ')
+  console.log('lottery draw has started... ');
   setTimeout(function () {
     if (Math.random() > 0.5) {
       resolve('you won.. :)');
@@ -230,3 +230,24 @@ const lottery = new Promise(function (resolve, reject) {
 });
 
 lottery.then(res => console.log(res)).catch(err => console.error(err));
+
+const wait = function (seconds) {
+  return new Promise(function (resolve) {
+    setTimeout(resolve, seconds * 1000);
+  });
+};
+
+wait(2)
+  .then(() => {
+    console.log('waited 1 seconds');
+    return wait(1);
+  })
+  .then(() => {
+    console.log('waited 2 seconds');
+    return wait(1);
+  })
+  .then(() => console.log('waited 3 seconds'));
+
+// make direct promise resolve and promise rejects
+Promise.resolve('a resolved promise').then(res => console.log(res));
+Promise.reject(new Error('Promise rejected')).catch(x => console.error(x));
