@@ -219,12 +219,14 @@ btn.addEventListener('click', function () {
 // Lec 271 - Building a promise
 
 const lottery = new Promise(function (resolve, reject) {
-  if (Math.random() > 0.5) {
-    resolve('you won.. :)');
-  } else {
-    reject('you lost..:(');
-  }
+  console.log('lottery draw has started... ')
+  setTimeout(function () {
+    if (Math.random() > 0.5) {
+      resolve('you won.. :)');
+    } else {
+      reject(new Error('you lost.. :('));
+    }
+  }, 3000);
 });
 
 lottery.then(res => console.log(res)).catch(err => console.error(err));
-
