@@ -183,9 +183,9 @@ const getCountryData = function (country) {
     })
     .finally(() => (countriesContainer.style.opacity = 1));
 };
-btn.addEventListener('click', function () {
-  getCountryData('russia');
-});
+// btn.addEventListener('click', function () {
+//   getCountryData('russia');
+// });
 
 ///////////////////////////////////
 // Lec 268 - Coding challenge 1
@@ -218,36 +218,84 @@ btn.addEventListener('click', function () {
 ///////////////////////////////////////////////
 // Lec 271 - Building a promise
 
-const lottery = new Promise(function (resolve, reject) {
-  console.log('lottery draw has started... ');
-  setTimeout(function () {
-    if (Math.random() > 0.5) {
-      resolve('you won.. :)');
-    } else {
-      reject(new Error('you lost.. :('));
-    }
-  }, 3000);
-});
+// const lottery = new Promise(function (resolve, reject) {
+//   console.log('lottery draw has started... ');
+//   setTimeout(function () {
+//     if (Math.random() > 0.5) {
+//       resolve('you won.. :)');
+//     } else {
+//       reject(new Error('you lost.. :('));
+//     }
+//   }, 3000);
+// });
 
-lottery.then(res => console.log(res)).catch(err => console.error(err));
+// lottery.then(res => console.log(res)).catch(err => console.error(err));
 
-const wait = function (seconds) {
-  return new Promise(function (resolve) {
-    setTimeout(resolve, seconds * 1000);
+// const wait = function (seconds) {
+//   return new Promise(function (resolve) {
+//     setTimeout(resolve, seconds * 1000);
+//   });
+// };
+
+// wait(2)
+//   .then(() => {
+//     console.log('waited 1 seconds');
+//     return wait(1);
+//   })
+//   .then(() => {
+//     console.log('waited 2 seconds');
+//     return wait(1);
+//   })
+//   .then(() => console.log('waited 3 seconds'));
+
+// // make direct promise resolve and promise rejects
+// Promise.resolve('a resolved promise').then(res => console.log(res));
+// Promise.reject(new Error('Promise rejected')).catch(x => console.error(x));
+
+////////////////////////////////////////////////////
+// Lec 272 - Promisifying the geolocation API
+
+// navigator.geolocation.getCurrentPosition(
+//   pos => console.log(pos),
+//   err => console.error(err)
+// );
+
+const getPosition = function () {
+  return new Promise(function (resolve, reject) {
+    navigator.geolocation.getCurrentPosition(resolve, reject);
   });
 };
 
-wait(2)
-  .then(() => {
-    console.log('waited 1 seconds');
-    return wait(1);
-  })
-  .then(() => {
-    console.log('waited 2 seconds');
-    return wait(1);
-  })
-  .then(() => console.log('waited 3 seconds'));
+getPosition().then(pos => console.log(pos));
 
-// make direct promise resolve and promise rejects
-Promise.resolve('a resolved promise').then(res => console.log(res));
-Promise.reject(new Error('Promise rejected')).catch(x => console.error(x));
+const whereAmI = function () {
+  getPosition()
+    .then(pos => {
+      const { latitude: lat, longitude: lng } = pos.coords;
+      // console.log(pos);
+      // console.log(pos.coords);
+      // console.log(lat, lng);
+      return fetch(
+        `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}`
+      );
+    })
+    .then(res => {
+      if (!res.ok) throw new Error(`Problem with geocoding: ${res.status}`);
+      return res.json();
+    })
+    .then(data => {
+      // console.log(data);
+      console.log(`country: ${data.countryName}, city: ${data.city}`);
+
+      return fetch(`https://restcountries.com/v3.1/name/${data.countryName}`);
+    })
+    .then(res => {
+      if (!res.ok) throw new Error(`Problem with geocoding: ${res.status}`);
+      return res.json();
+    })
+    .then(data => renderCountry(data[0]))
+    .catch(err => console.log(`${err.message}`))
+    .finally(() => (countriesContainer.style.opacity = 1));
+};
+
+btn.addEventListener('click', whereAmI);
