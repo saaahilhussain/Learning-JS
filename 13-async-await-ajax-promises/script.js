@@ -388,9 +388,35 @@ getCountryAndNeighbourData('russia');
 
 // get3Countries('india', 'usa', 'russia');
 
-////////////////////////////////////////
-// Lec 277 - Running Promises in Parallel
+// ////////////////////////////////////////
+// // Lec 277 - Running Promises in Parallel
 
+// const getJSON = function (url) {
+//   return fetch(url).then(response => {
+//     // console.log(response);
+//     if (!response.ok)
+//       throw new Error(`Country not found :( ${response.status}`);
+//     return response.json();
+//   });
+// };
+
+// const get3Countries = async function (c1, c2, c3) {
+//   try {
+//     const data = await Promise.all([
+//       getJSON(`https://restcountries.com/v3.1/name/${c1}`),
+//       getJSON(`https://restcountries.com/v3.1/name/${c2}`),
+//       getJSON(`https://restcountries.com/v3.1/name/${c3}`),
+//     ]);
+//     console.log(data.map(d => d[0].capital).map(d => d[0]));
+//   } catch (err) {
+//     console.error(`${err.message}`);
+//   }
+// };
+
+// get3Countries('india', 'usa', 'russia');
+
+//////////////////////////////////////////
+// leC 278 - race, allSettled and any
 const getJSON = function (url) {
   return fetch(url).then(response => {
     // console.log(response);
@@ -400,17 +426,48 @@ const getJSON = function (url) {
   });
 };
 
-const get3Countries = async function (c1, c2, c3) {
-  try {
-    const data = await Promise.all([
-      getJSON(`https://restcountries.com/v3.1/name/${c1}`),
-      getJSON(`https://restcountries.com/v3.1/name/${c2}`),
-      getJSON(`https://restcountries.com/v3.1/name/${c3}`),
-    ]);
-    console.log(data.map(d => d[0].capital).map(d => d[0]));
-  } catch (err) {
-    console.error(`${err.message}`);
-  }
+// Promise.race([]);
+(async function () {
+  const res = await Promise.race([
+    getJSON(`https://restcountries.com/v3.1/name/india`),
+    getJSON(`https://restcountries.com/v3.1/name/usa`),
+    getJSON(`https://restcountries.com/v3.1/name/russia`),
+  ]);
+  console.log(res[0]);
+})();
+
+const timeout = function (sec) {
+  return new Promise(function (_, reject) {
+    setTimeout(function () {
+      reject(new Error('Request took too long (more than 100 ms)...'));
+    }, sec * 100);
+  });
 };
 
-get3Countries('india', 'usa', 'russia');
+Promise.race([
+  getJSON('https://restcountries.com/v3.1/name/russia'),
+  timeout(3),
+])
+  .then(data => console.log(data[0]))
+  .catch(err => console.error(err));
+
+// Promise.allSettled([]);
+Promise.allSettled([
+  Promise.resolve('SUCCESS'),
+  Promise.reject('ERROR'),
+  Promise.resolve('SUCCESS'),
+]).then(res => console.log(res));
+
+// Difference with Promise.all([]);
+Promise.all([
+  Promise.resolve('SUCCESS'),
+  Promise.reject('ERROR'),
+  Promise.resolve('SUCCESS'),
+]).then(res => console.log(res));
+
+// Promise.any([]);
+Promise.any([
+  Promise.resolve('SUCCESS'),
+  Promise.reject('ERROR'),
+  Promise.resolve('SUCCESS'),
+]).then(res => console.log(res));
